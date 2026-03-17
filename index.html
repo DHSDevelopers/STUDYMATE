@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>StudyMate — Maharashtra SSC 10th AI Tutor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --void: #070412; --deep: #0d0820;
+  --surface: rgba(20,14,45,0.75); --elevated: rgba(30,20,65,0.85);
+  --glass: rgba(255,255,255,0.055); --glass-border: rgba(255,255,255,0.09);
+  --glass-shine: rgba(255,255,255,0.04);
+  --gold: #f5c842; --gold2: #ff9a3c; --violet: #7c5cfc; --violet2: #c084fc;
+  --teal: #2dd4bf; --rose: #fb7185;
+  --grad-hero: linear-gradient(135deg, #7c5cfc 0%, #c084fc 40%, #f5c842 100%);
+  --grad-gold: linear-gradient(135deg, #f5c842 0%, #ff9a3c 100%);
+  --grad-msg-ai: linear-gradient(135deg, rgba(124,92,252,0.14) 0%, rgba(45,212,191,0.08) 100%);
+  --grad-msg-user: linear-gradient(135deg, rgba(245,200,66,0.13) 0%, rgba(255,154,60,0.09) 100%);
+  --text-1: rgba(240,235,255,0.95); --text-2: rgba(190,175,240,0.70); --text-3: rgba(140,120,200,0.45);
+  --font-d: 'Playfair Display', serif; --font-b: 'Plus Jakarta Sans', sans-serif; --font-m: 'JetBrains Mono', monospace;
+  --r-xl: 22px; --r-lg: 16px; --r-md: 11px; --r-sm: 7px;
+  --blur-g: blur(20px) saturate(180%);
+  --spring: cubic-bezier(0.34,1.56,0.64,1); --smooth: cubic-bezier(0.25,0.46,0.45,0.94); --out: cubic-bezier(0.16,1,0.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:var(--font-b);background:var(--void);color:var(--text-1);-webkit-font-smoothing:antialiased;overflow:hidden}
+.bg-wrap{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.bg-mesh{position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 10% 5%,rgba(124,92,252,0.22) 0%,transparent 60%),radial-gradient(ellipse 50% 45% at 90% 90%,rgba(245,200,66,0.14) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 55% 45%,rgba(192,132,252,0.08) 0%,transparent 60%),var(--deep)}
+.star{position:absolute;border-radius:50%;background:white;animation:twinkle ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.12;transform:scale(1)}50%{opacity:.7;transform:scale(1.3)}}
+.orb{position:absolute;border-radius:50%;filter:blur(70px);animation:orb-drift linear infinite}
+.orb-1{width:450px;height:450px;background:radial-gradient(circle,rgba(124,92,252,0.18),transparent 70%);top:-100px;left:-80px;animation-duration:30s}
+.orb-2{width:350px;height:350px;background:radial-gradient(circle,rgba(245,200,66,0.12),transparent 70%);bottom:-60px;right:-60px;animation-duration:38s;animation-delay:-14s}
+.orb-3{width:250px;height:250px;background:radial-gradient(circle,rgba(45,212,191,0.09),transparent 70%);top:50%;left:60%;animation-duration:26s;animation-delay:-8s}
+@keyframes orb-drift{0%{transform:translate(0,0) scale(1)}25%{transform:translate(20px,-15px) scale(1.05)}50%{transform:translate(-15px,20px) scale(.96)}75%{transform:translate(15px,15px) scale(1.03)}100%{transform:translate(0,0) scale(1)}}
+.page{position:fixed;inset:0;z-index:1;display:flex;flex-direction:column;transition:opacity .5s var(--smooth),transform .5s var(--smooth)}
+.page.hidden{opacity:0;pointer-events:none;transform:translateY(18px)}
+#page-setup{align-items:center;justify-content:flex-start;overflow-y:auto;padding:40px 20px 60px;scrollbar-width:thin;scrollbar-color:rgba(124,92,252,0.2) transparent}
+#page-setup::-webkit-scrollbar{width:4px}
+#page-setup::-webkit-scrollbar-thumb{background:rgba(124,92,252,0.2);border-radius:4px}
+.setup-wrap{width:100%;max-width:620px;animation:fadeUp .6s var(--out) both}
+.setup-hero{text-align:center;margin-bottom:44px;padding-top:10px}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;padding:5px 14px;border-radius:100px;background:rgba(124,92,252,0.12);border:1px solid rgba(124,92,252,0.25);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--violet2);margin-bottom:18px}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 6px var(--gold);animation:pulse-dot 2s ease infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+.setup-title{font-family:var(--font-d);font-size:clamp(32px,5vw,50px);font-weight:800;line-height:1.12;letter-spacing:-.02em;background:var(--grad-hero);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:14px}
+.setup-sub{font-size:15px;color:var(--text-2);line-height:1.6;max-width:380px;margin:0 auto}
+.form-card{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--r-xl);backdrop-filter:var(--blur-g);-webkit-backdrop-filter:var(--blur-g);padding:32px 30px;box-shadow:0 30px 70px rgba(0,0,0,0.45),inset 0 1px 0 var(--glass-shine)}
+.form-section{margin-bottom:28px}
+.form-section:last-of-type{margin-bottom:0}
+.section-label{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.section-label::after{content:'';flex:1;height:1px;background:var(--glass-border)}
+.subject-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.subj-pill{padding:13px 16px;border-radius:var(--r-lg);border:1px solid var(--glass-border);background:var(--glass);cursor:pointer;transition:all .2s var(--smooth);display:flex;align-items:center;gap:10px;user-select:none}
+.subj-pill:hover{background:rgba(124,92,252,0.1);border-color:rgba(124,92,252,0.28);transform:translateY(-1px)}
+.subj-pill.selected{background:rgba(124,92,252,0.18);border-color:rgba(124,92,252,0.5);box-shadow:0 0 18px rgba(124,92,252,0.15)}
+.subj-emoji{font-size:18px;flex-shrink:0}
+.subj-name{font-size:13px;font-weight:600;color:var(--text-1)}
+.subj-count{font-size:10px;color:var(--text-3);margin-top:1px}
+.subj-check{width:18px;height:18px;border-radius:50%;margin-left:auto;flex-shrink:0;border:2px solid var(--glass-border);background:transparent;transition:all .2s var(--spring);display:flex;align-items:center;justify-content:center}
+.subj-pill.selected .subj-check{background:var(--violet);border-color:var(--violet);box-shadow:0 0 10px rgba(124,92,252,0.5)}
+.subj-pill.selected .subj-check::after{content:'✓';font-size:10px;color:white;font-weight:700}
+#chapterSection{animation:fadeUp .35s var(--out) both}
+.chapter-grid{display:flex;flex-direction:column;gap:6px;max-height:320px;overflow-y:auto;padding-right:4px;scrollbar-width:thin;scrollbar-color:rgba(124,92,252,0.15) transparent}
+.chapter-grid::-webkit-scrollbar{width:3px}
+.chapter-grid::-webkit-scrollbar-thumb{background:rgba(124,92,252,0.2);border-radius:3px}
+.ch-item{padding:11px 14px;border-radius:var(--r-md);border:1px solid var(--glass-border);background:var(--glass);cursor:pointer;transition:all .18s var(--smooth);display:flex;align-items:center;gap:12px;user-select:none}
+.ch-item:hover{background:rgba(245,200,66,0.08);border-color:rgba(245,200,66,0.2)}
+.ch-item.selected{background:rgba(245,200,66,0.12);border-color:rgba(245,200,66,0.35)}
+.ch-num{min-width:26px;height:26px;border-radius:7px;background:var(--glass);border:1px solid var(--glass-border);font-family:var(--font-m);font-size:11px;font-weight:500;color:var(--text-3);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .18s}
+.ch-item.selected .ch-num{background:rgba(245,200,66,0.2);border-color:rgba(245,200,66,0.4);color:var(--gold)}
+.ch-title{font-size:13px;font-weight:500;color:var(--text-1);flex:1}
+.ch-check{width:17px;height:17px;border-radius:50%;flex-shrink:0;border:1.5px solid var(--glass-border);background:transparent;transition:all .2s var(--spring);display:flex;align-items:center;justify-content:center}
+.ch-item.selected .ch-check{background:var(--gold);border-color:var(--gold);box-shadow:0 0 8px rgba(245,200,66,0.4)}
+.ch-item.selected .ch-check::after{content:'✓';font-size:9px;color:#1a1000;font-weight:800}
+.sub-pills{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.sub-pill{padding:5px 13px;border-radius:100px;font-size:12px;font-weight:600;border:1px solid var(--glass-border);background:var(--glass);cursor:pointer;transition:all .18s var(--smooth);color:var(--text-2)}
+.sub-pill:hover{border-color:rgba(245,200,66,0.3);color:var(--gold)}
+.sub-pill.active{background:rgba(245,200,66,0.14);border-color:rgba(245,200,66,0.4);color:var(--gold)}
+.sel-all-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.sel-all-btn{font-size:11.5px;font-weight:600;color:var(--violet2);background:none;border:none;cursor:pointer;padding:3px 0;transition:opacity .15s}
+.sel-all-btn:hover{opacity:.75}
+.selected-count{font-size:11px;color:var(--text-3)}
+.save-btn{width:100%;padding:15px;border-radius:var(--r-lg);border:none;background:var(--grad-hero);color:white;font-family:var(--font-b);font-size:15px;font-weight:700;cursor:pointer;margin-top:24px;transition:all .2s var(--spring);box-shadow:0 8px 28px rgba(124,92,252,0.35);position:relative;overflow:hidden}
+.save-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.12),transparent);opacity:0;transition:opacity .2s}
+.save-btn:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(124,92,252,0.45)}
+.save-btn:hover::before{opacity:1}
+.save-btn:active{transform:scale(.97)}
+.save-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+#page-tutor{flex-direction:column;overflow:hidden}
+.tutor-topbar{display:flex;align-items:center;gap:12px;padding:14px 22px;border-bottom:1px solid var(--glass-border);background:rgba(7,4,18,0.55);backdrop-filter:var(--blur-g);-webkit-backdrop-filter:var(--blur-g);flex-shrink:0}
+.tutor-back-btn{width:34px;height:34px;border-radius:var(--r-md);border:1px solid var(--glass-border);background:var(--glass);color:var(--text-2);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s var(--smooth);flex-shrink:0}
+.tutor-back-btn:hover{color:var(--gold);border-color:rgba(245,200,66,0.3);background:rgba(245,200,66,0.07)}
+.tutor-info{flex:1;min-width:0}
+.tutor-subject{font-family:var(--font-d);font-size:16px;font-weight:700;background:var(--grad-hero);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tutor-chapter{font-size:11px;color:var(--text-3);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tutor-badge{display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:100px;background:rgba(45,212,191,0.08);border:1px solid rgba(45,212,191,0.2);font-size:10.5px;font-weight:600;color:var(--teal);flex-shrink:0}
+.tutor-badge-dot{width:5px;height:5px;border-radius:50%;background:var(--teal);box-shadow:0 0 5px var(--teal);animation:pulse-dot 2s ease infinite}
+.context-strip{padding:10px 20px;display:flex;gap:7px;flex-wrap:wrap;flex-shrink:0;border-bottom:1px solid var(--glass-border);background:rgba(7,4,18,0.3)}
+.ctx-pill{padding:4px 11px;border-radius:100px;background:rgba(124,92,252,0.1);border:1px solid rgba(124,92,252,0.2);font-size:11px;font-weight:500;color:var(--violet2);white-space:nowrap;max-width:220px;overflow:hidden;text-overflow:ellipsis}
+.messages-wrap{flex:1;overflow:hidden;position:relative}
+.messages-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:40px;background:linear-gradient(to bottom,var(--void),transparent);z-index:2;pointer-events:none}
+#messages{height:100%;overflow-y:auto;padding:18px 22px 22px;display:flex;flex-direction:column;gap:20px;scrollbar-width:thin;scrollbar-color:rgba(124,92,252,0.2) transparent}
+#messages::-webkit-scrollbar{width:4px}
+#messages::-webkit-scrollbar-thumb{background:rgba(124,92,252,0.2);border-radius:4px}
+.welcome-card{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--r-xl);padding:28px 26px;backdrop-filter:var(--blur-g);-webkit-backdrop-filter:var(--blur-g);box-shadow:inset 0 1px 0 var(--glass-shine),0 16px 48px rgba(0,0,0,0.35);animation:fadeUp .5s var(--out) both}
+.welcome-card h3{font-family:var(--font-d);font-size:20px;font-weight:700;background:var(--grad-hero);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+.welcome-card p{font-size:13.5px;color:var(--text-2);line-height:1.65;margin-bottom:16px}
+.starter-chips{display:flex;flex-wrap:wrap;gap:7px}
+.starter-chip{padding:7px 13px;border-radius:100px;border:1px solid var(--glass-border);background:var(--glass);font-size:12px;color:var(--text-2);cursor:pointer;transition:all .2s var(--smooth);font-family:var(--font-b)}
+.starter-chip:hover{color:var(--gold);border-color:rgba(245,200,66,0.3);background:rgba(245,200,66,0.07);transform:translateY(-2px)}
+.message{display:flex;gap:10px;align-items:flex-end}
+.message.user{flex-direction:row-reverse}
+.avatar{width:32px;height:32px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;position:relative;overflow:hidden}
+.avatar-ai{background:var(--grad-hero);box-shadow:0 0 14px rgba(124,92,252,0.3)}
+.avatar-ai::before{content:'';position:absolute;inset:0;background:conic-gradient(from 180deg,var(--violet),var(--violet2),var(--gold),var(--violet));animation:spin 5s linear infinite;opacity:.45}
+.avatar-ai svg{position:relative;z-index:1}
+.avatar-user{background:linear-gradient(135deg,rgba(245,200,66,0.35),rgba(255,154,60,0.25));border:1px solid rgba(245,200,66,0.25);color:var(--gold);font-family:var(--font-d);font-size:12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.bubble{max-width:min(72%,540px);padding:12px 16px;border-radius:var(--r-lg);position:relative;line-height:1.68;font-size:14px;word-wrap:break-word}
+.bubble-ai{background:var(--grad-msg-ai);border:1px solid rgba(124,92,252,0.18);border-bottom-left-radius:var(--r-sm);backdrop-filter:var(--blur-g);-webkit-backdrop-filter:var(--blur-g);box-shadow:inset 0 1px 0 var(--glass-shine),0 4px 18px rgba(0,0,0,0.2)}
+.bubble-user{background:var(--grad-msg-user);border:1px solid rgba(245,200,66,0.18);border-bottom-right-radius:var(--r-sm);backdrop-filter:var(--blur-g);-webkit-backdrop-filter:var(--blur-g)}
+.msg-time{display:block;font-size:9.5px;color:var(--text-3);margin-top:5px}
+.message.user .msg-time{text-align:right}
+.bubble strong{font-weight:700;color:rgba(255,255,255,0.95)}
+.bubble em{font-style:italic;color:rgba(220,210,255,0.8)}
+.bubble code{font-family:var(--font-m);font-size:12px;background:rgba(124,92,252,0.12);border:1px solid rgba(124,92,252,0.2);padding:1px 5px;border-radius:4px;color:var(--violet2)}
+.bubble pre{margin:8px 0;border-radius:var(--r-md);overflow:hidden;border:1px solid rgba(124,92,252,0.15);background:rgba(5,2,18,0.7)}
+.code-hdr{display:flex;align-items:center;justify-content:space-between;padding:5px 12px;background:rgba(124,92,252,0.08);border-bottom:1px solid rgba(124,92,252,0.1)}
+.code-lang{font-family:var(--font-m);font-size:9.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--violet2);opacity:.7}
+.copy-code-btn{background:none;border:none;cursor:pointer;color:var(--text-3);font-size:9.5px;font-family:var(--font-b);padding:2px 6px;border-radius:3px;transition:color .15s}
+.copy-code-btn:hover{color:var(--gold)}
+.bubble pre code{display:block;padding:12px 14px;font-size:12px;line-height:1.7;white-space:pre;overflow-x:auto;background:none;border:none;color:rgba(210,230,255,0.88)}
+.bubble ul,.bubble ol{margin:6px 0 6px 18px}
+.bubble li{margin-bottom:4px}
+.bubble p{margin:5px 0}
+.bubble h1,.bubble h2,.bubble h3{font-family:var(--font-d);margin:10px 0 4px}
+.bubble blockquote{border-left:2px solid var(--violet);padding-left:12px;margin:7px 0;opacity:.75;font-style:italic}
+.bubble-actions{display:flex;gap:4px;margin-top:8px;align-items:center}
+.bub-act{border:none;background:none;color:var(--text-3);cursor:pointer;padding:4px 7px;border-radius:6px;font-size:10px;font-family:var(--font-b);display:flex;align-items:center;gap:4px;transition:all .15s}
+.bub-act:hover{color:var(--gold);background:rgba(245,200,66,0.08)}
+.typing-indicator{display:flex;gap:10px;align-items:flex-end}
+.typing-bubble{padding:14px 17px;background:var(--grad-msg-ai);border:1px solid rgba(124,92,252,0.18);border-radius:var(--r-lg);border-bottom-left-radius:var(--r-sm);backdrop-filter:var(--blur-g);-webkit-backdrop-filter:var(--blur-g);display:flex;gap:5px;align-items:center}
+.typing-dot{width:6px;height:6px;border-radius:50%;background:var(--violet2);opacity:.4;animation:tdot 1.2s ease-in-out infinite}
+.typing-dot:nth-child(2){animation-delay:.2s}.typing-dot:nth-child(3){animation-delay:.4s}
+@keyframes tdot{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-5px);opacity:1}}
+.input-area{padding:10px 22px 18px;flex-shrink:0}
+.input-glass{background:rgba(12,8,30,0.85);border:1px solid var(--glass-border);border-radius:var(--r-xl);backdrop-filter:var(--blur-g);-webkit-backdrop-filter:var(--blur-g);transition:border-color .25s,box-shadow .25s;overflow:hidden}
+.input-glass:focus-within{border-color:rgba(124,92,252,0.3);box-shadow:0 0 24px rgba(124,92,252,0.08)}
+.input-row{display:flex;align-items:flex-end;gap:4px;padding:8px 8px 8px 6px}
+.act-btn{width:34px;height:34px;flex-shrink:0;border:none;background:transparent;color:var(--text-3);cursor:pointer;border-radius:9px;display:flex;align-items:center;justify-content:center;transition:all .2s var(--smooth)}
+.act-btn:hover{color:var(--gold);background:rgba(245,200,66,0.08)}
+#userInput{flex:1;background:transparent;border:none;outline:none;resize:none;color:var(--text-1);font-family:var(--font-b);font-size:14px;line-height:1.6;max-height:150px;overflow-y:auto;caret-color:var(--gold);padding:3px 0 3px 8px}
+#userInput::placeholder{color:var(--text-3)}
+.send-btn{width:38px;height:38px;border-radius:11px;border:none;background:var(--grad-gold);color:#1a0f00;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s var(--spring);box-shadow:0 4px 16px rgba(245,200,66,0.3)}
+.send-btn:hover{transform:scale(1.07) translateY(-1px);box-shadow:0 6px 20px rgba(245,200,66,0.4)}
+.send-btn:active{transform:scale(.93)}
+.send-btn:disabled{opacity:.35;cursor:not-allowed;transform:none;box-shadow:none}
+.input-hint{text-align:center;font-size:10px;color:var(--text-3);margin-top:6px}
+.input-hint kbd{display:inline-block;padding:1px 4px;border-radius:3px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);font-family:var(--font-m);font-size:9px}
+#toast-wrap{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);z-index:200;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.toast{display:flex;align-items:center;gap:9px;padding:10px 16px;border-radius:var(--r-lg);font-size:12.5px;font-weight:500;backdrop-filter:var(--blur-g);box-shadow:0 8px 28px rgba(0,0,0,0.4);animation:tIn .3s var(--out) both;pointer-events:auto;max-width:340px}
+.toast.exit{animation:tOut .25s var(--smooth) both}
+.toast-success{background:rgba(45,212,100,0.12);border:1px solid rgba(45,212,100,0.25);color:rgba(100,240,160,0.95)}
+.toast-error{background:rgba(255,60,90,0.12);border:1px solid rgba(255,60,90,0.25);color:rgba(255,150,170,0.95)}
+.toast-info{background:rgba(124,92,252,0.12);border:1px solid rgba(124,92,252,0.25);color:rgba(192,160,255,0.95)}
+@keyframes tIn{from{opacity:0;transform:translateY(10px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes tOut{from{opacity:1}to{opacity:0;transform:translateY(-6px) scale(.95)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.dialog-bd{position:fixed;inset:0;background:rgba(3,2,10,0.75);backdrop-filter:blur(8px);z-index:100;display:flex;align-items:center;justify-content:center;animation:fadeBg .2s ease both}
+@keyframes fadeBg{from{opacity:0}to{opacity:1}}
+.dialog-box{background:var(--elevated);border:1px solid var(--glass-border);border-radius:var(--r-xl);padding:28px 26px 22px;max-width:300px;width:calc(100% - 40px);box-shadow:0 24px 60px rgba(0,0,0,0.55);animation:popIn .28s var(--spring) both}
+@keyframes popIn{from{opacity:0;transform:scale(.9) translateY(12px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.dialog-box h3{font-family:var(--font-d);font-size:16px;font-weight:700;margin-bottom:7px}
+.dialog-box p{font-size:13px;color:var(--text-2);margin-bottom:20px;line-height:1.55}
+.dialog-btns{display:flex;gap:9px}
+.btn{flex:1;padding:9px 14px;border-radius:var(--r-md);font-size:13px;font-weight:600;font-family:var(--font-b);cursor:pointer;transition:all .15s;border:1px solid var(--glass-border)}
+.btn-ghost{background:transparent;color:var(--text-2)}.btn-ghost:hover{background:rgba(255,255,255,0.05)}
+.btn-primary{background:var(--grad-hero);border:none;color:white}.btn-primary:hover{opacity:.9}
+@media(max-width:560px){.subject-grid{grid-template-columns:1fr}.form-card{padding:22px 18px}.bubble{max-width:88%}.tutor-topbar{padding:12px 14px}#messages{padding:12px 14px 16px}.input-area{padding:8px 14px 14px}.context-strip{padding:8px 14px}}
+
+/* ── GOOGLE LOGIN GATE ── */
+#login-gate{position:fixed;inset:0;z-index:9999;background:var(--void);display:flex;align-items:center;justify-content:center;animation:fadeUp .5s var(--out) both}
+#login-gate.hidden{display:none}
+.login-card{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--r-xl);padding:44px 36px 36px;max-width:380px;width:calc(100% - 40px);text-align:center;box-shadow:0 40px 80px rgba(0,0,0,0.6),inset 0 1px 0 var(--glass-shine);backdrop-filter:var(--blur-g);-webkit-backdrop-filter:var(--blur-g)}
+.login-logo{width:64px;height:64px;border-radius:18px;background:var(--grad-hero);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 0 28px rgba(124,92,252,0.4)}
+.login-title{font-family:var(--font-d);font-size:26px;font-weight:800;background:var(--grad-hero);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+.login-sub{font-size:14px;color:var(--text-2);margin-bottom:32px;line-height:1.6}
+.google-signin-btn{width:100%;padding:14px 20px;border-radius:var(--r-lg);border:1px solid rgba(255,255,255,0.14);background:rgba(255,255,255,0.07);color:var(--text-1);font-family:var(--font-b);font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;transition:all .2s var(--smooth);margin-bottom:12px}
+.google-signin-btn:hover{background:rgba(255,255,255,0.13);border-color:rgba(255,255,255,0.25);transform:translateY(-1px)}
+.google-signin-btn:active{transform:scale(.97)}
+.google-signin-btn svg{flex-shrink:0}
+.login-note{font-size:11px;color:var(--text-3);line-height:1.5}
+.login-user-bar{display:none;position:fixed;bottom:20px;right:20px;z-index:500;background:var(--elevated);border:1px solid var(--glass-border);border-radius:100px;padding:6px 14px 6px 8px;display:none;align-items:center;gap:9px;backdrop-filter:var(--blur-g);box-shadow:0 8px 24px rgba(0,0,0,0.4)}
+.login-user-bar.show{display:flex}
+.login-user-avatar{width:26px;height:26px;border-radius:50%;object-fit:cover;border:1px solid var(--glass-border)}
+.login-user-name{font-size:11.5px;font-weight:500;color:var(--text-2);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.login-signout-btn{background:none;border:none;color:var(--text-3);font-size:10.5px;cursor:pointer;padding:2px 6px;border-radius:4px;font-family:var(--font-b);transition:color .15s}
+.login-signout-btn:hover{color:var(--rose)}
+
+/* ══ LOGIN PAGE — matches app design ══ */
+#page-login{align-items:center;justify-content:center;z-index:50;padding:20px}
+.login-wrap{width:100%;max-width:420px;display:flex;flex-direction:column;align-items:center;animation:fadeUp .6s var(--out) both}
+.login-logo-ring{width:90px;height:90px;border-radius:26px;background:var(--grad-hero);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;box-shadow:0 0 40px rgba(124,92,252,0.45),0 0 80px rgba(124,92,252,0.12);position:relative;overflow:hidden;flex-shrink:0}
+.login-logo-ring::before{content:'';position:absolute;inset:0;background:conic-gradient(from 0deg,var(--violet),var(--violet2),var(--gold),var(--violet));animation:spin 4s linear infinite;opacity:.5}
+.login-logo-ring svg{position:relative;z-index:1}
+.login-title{font-family:var(--font-d);font-size:clamp(38px,6vw,54px);font-weight:800;line-height:1.1;letter-spacing:-.02em;background:var(--grad-hero);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;margin-bottom:8px}
+.login-tagline{font-family:var(--font-d);font-size:14px;font-style:italic;color:var(--text-3);text-align:center;margin-bottom:24px}
+.login-card{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--r-xl);backdrop-filter:var(--blur-g);-webkit-backdrop-filter:var(--blur-g);padding:28px 26px 22px;width:100%;box-shadow:0 30px 70px rgba(0,0,0,0.5),inset 0 1px 0 var(--glass-shine)}
+.login-card-title{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.login-card-title::after{content:'';flex:1;height:1px;background:var(--glass-border)}
+.google-btn{width:100%;padding:14px 20px;border-radius:var(--r-lg);border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.055);color:var(--text-1);font-family:var(--font-b);font-size:14.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;transition:all .22s var(--smooth);position:relative;overflow:hidden;margin-bottom:16px}
+.google-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,92,252,0.1),rgba(245,200,66,0.05));opacity:0;transition:opacity .22s}
+.google-btn:hover{border-color:rgba(124,92,252,0.35);transform:translateY(-2px);box-shadow:0 12px 32px rgba(124,92,252,0.2)}
+.google-btn:hover::after{opacity:1}
+.google-btn:active{transform:scale(.97)}
+.google-btn svg{flex-shrink:0;position:relative;z-index:1}
+.google-btn-text{position:relative;z-index:1}
+.login-feats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+.login-feat{display:flex;align-items:center;gap:9px;padding:10px 12px;border-radius:var(--r-md);background:var(--glass);border:1px solid var(--glass-border)}
+.login-feat-ico{font-size:16px;flex-shrink:0}
+.login-feat-txt{font-size:11px;font-weight:500;color:var(--text-2);line-height:1.3}
+.login-note{font-size:10.5px;color:var(--text-3);text-align:center;margin-top:14px;line-height:1.6}
+/* user pill shown in tutor topbar after login */
+.user-pill{display:none;align-items:center;gap:7px;padding:4px 10px 4px 5px;border-radius:100px;background:var(--glass);border:1px solid var(--glass-border);cursor:pointer;transition:all .18s var(--smooth)}
+.user-pill.show{display:flex}
+.user-pill:hover{background:rgba(255,60,90,0.08);border-color:rgba(255,60,90,0.2)}
+.user-pill img{width:22px;height:22px;border-radius:50%;object-fit:cover}
+.user-pill-name{font-size:11.5px;font-weight:500;color:var(--text-2);max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.user-pill-out{font-size:9px;color:var(--text-3)}
+
+</style>
+  <!-- Firebase Google Auth -->
+    </head>
+<body>
+
+<!-- ══ PAGE 0 — LOGIN ══ -->
+<div class="page" id="page-login">
+  <div class="login-wrap">
+    <div class="login-logo-ring">
+      <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5Z"/></svg>
+    </div>
+    <div class="login-title">StudyMate</div>
+    <div class="login-tagline">Maharashtra SSC · Standard 10 · AI Tutor</div>
+    <div class="login-card">
+      <div class="login-card-title">Sign in to continue</div>
+      <button class="google-btn" id="googleSignInBtn">
+        <svg width="20" height="20" viewBox="0 0 48 48">
+          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        </svg>
+        <span class="google-btn-text">Continue with Google</span>
+      </button>
+      <div class="login-feats">
+        <div class="login-feat"><div class="login-feat-ico">📚</div><div class="login-feat-txt">9 subjects · Full Balbharati Q&amp;A</div></div>
+        <div class="login-feat"><div class="login-feat-ico">✦</div><div class="login-feat-txt">Board exam format answers</div></div>
+        <div class="login-feat"><div class="login-feat-ico">🔢</div><div class="login-feat-txt">Step-by-step numericals</div></div>
+        <div class="login-feat"><div class="login-feat-ico">🎯</div><div class="login-feat-txt">Figures of speech &amp; definitions</div></div>
+      </div>
+    </div>
+    <p class="login-note" id="loginNote">Sign in with Google to save your sessions across devices</p>
+  </div>
+</div>
+
+<div class="bg-wrap">
+  <div class="bg-mesh"></div>
+  <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+</div>
+
+<div class="page hidden" id="page-setup">
+  <div class="setup-wrap">
+    <div class="setup-hero">
+      <div class="hero-badge"><span class="hero-badge-dot"></span>Maharashtra Board · SSC · Standard 10</div>
+      <h1 class="setup-title">Your Personal<br/>Study Tutor</h1>
+      <p class="setup-sub">Select your subject and chapters. Your AI tutor will have complete knowledge of only what you choose — focused, precise, exam-ready.</p>
+    </div>
+    <div class="form-card">
+      <div class="form-section">
+        <div class="section-label">Choose Subject</div>
+        <div class="subject-grid" id="subjectGrid"></div>
+      </div>
+      <div class="form-section" id="chapterSection" style="display:none">
+        <div class="section-label">Select Chapters</div>
+        <div id="subSubjectPills" class="sub-pills" style="display:none"></div>
+        <div class="sel-all-row">
+          <button class="sel-all-btn" id="selAllBtn">Select All</button>
+          <span class="selected-count" id="selCount">0 selected</span>
+        </div>
+        <div class="chapter-grid" id="chapterGrid"></div>
+      </div>
+      <button class="save-btn" id="saveBtn" disabled>✦ &nbsp;Start Studying</button>
+    </div>
+  </div>
+</div>
+
+<div class="page hidden" id="page-tutor">
+  <div class="tutor-topbar">
+    <button class="tutor-back-btn" id="backBtn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div class="tutor-info">
+      <div class="tutor-subject" id="tutorSubject">—</div>
+      <div class="tutor-chapter" id="tutorChapters">—</div>
+    </div>
+    <div class="tutor-badge"><span class="tutor-badge-dot"></span>AI Tutor</div>
+    <div class="user-pill" id="userPill"><img id="uAvatar" src="" alt=""/><span class="user-pill-name" id="uName"></span><span class="user-pill-out">&#8618;</span></div>
+  </div>
+  <div class="context-strip" id="contextStrip"></div>
+  <div class="messages-wrap">
+    <div id="messages" role="log" aria-live="polite"></div>
+  </div>
+  <div class="input-area">
+    <div class="input-glass">
+      <div class="input-row">
+        <textarea id="userInput" placeholder="Ask a question about your chapter…" rows="1" maxlength="3000"></textarea>
+        <button class="act-btn" id="micBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        </button>
+        <button class="send-btn" id="sendBtn" disabled>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </div>
+    <p class="input-hint"><kbd>Enter</kbd> send · <kbd>Shift+Enter</kbd> new line</p>
+  </div>
+</div>
+
+<div id="toast-wrap"></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script>
+'use strict';
+
+/* ══ FIREBASE CONFIG ═══════════════════════════════════
+   Get YOUR values from: console.firebase.google.com
+   Project Settings → Your apps → Web → Copy config
+   Then: Authentication → Sign-in method → Enable Google
+═══════════════════════════════════════════════════════ */
+const FIREBASE_CONFIG = {
+  apiKey: 'AIzaSyB0Wq4PD5dHfGvXvzWtus0KrlUHlRS-IxA',
+  authDomain: 'aura-ai-fe8dc.firebaseapp.com',
+  projectId: 'aura-ai-fe8dc',
+  storageBucket: 'aura-ai-fe8dc.firebasestorage.app',
+  messagingSenderId: '351800248641',
+  appId: '1:351800248641:web:a099c8e31d7b4f01dcf9c0'
+};
+let _auth = null;
+try { firebase.initializeApp(FIREBASE_CONFIG); _auth = firebase.auth(); }
+catch(e) { console.warn('[StudyMate] Firebase not configured:', e.message); }
+
+function _goLogin(){
+  document.getElementById('page-login').classList.remove('hidden');
+  document.getElementById('page-setup').classList.add('hidden');
+  document.getElementById('page-tutor').classList.add('hidden');
+  document.getElementById('userPill').classList.remove('show');
+}
+function _goApp(user){
+  document.getElementById('page-login').classList.add('hidden');
+  if(user){
+    document.getElementById('uAvatar').src = user.photoURL||'';
+    document.getElementById('uName').textContent = (user.displayName||user.email||'Student').split(' ')[0];
+    document.getElementById('userPill').classList.add('show');
+  }
+  const saved = loadSession();
+  if(saved){ state.subject=saved.subject; state.subSubject=saved.subSubject; state.selectedChapters=saved.selectedChapters; openTutorPage(); toast('Welcome back! ✦','success'); }
+  else { document.getElementById('page-setup').classList.remove('hidden'); }
+}
+
+if(_auth){
+  _auth.onAuthStateChanged(u=>{ if(u) _goApp(u); else _goLogin(); });
+} else {
+  // Not configured — show skip button
+  setTimeout(function(){
+    var note = document.getElementById('loginNote');
+    if(!note) return;
+    var btn = document.createElement('button');
+    btn.textContent = 'Skip (Firebase not set up yet)';
+    btn.style.cssText = 'display:block;margin:8px auto 0;background:none;border:1px solid rgba(255,255,255,0.12);color:var(--text-3);padding:5px 14px;border-radius:8px;cursor:pointer;font-size:11px;font-family:var(--font-b)';
+    btn.addEventListener('click', function(){ document.getElementById('page-login').classList.add('hidden'); document.getElementById('page-setup').classList.remove('hidden'); });
+    note.parentNode.insertBefore(btn, note.nextSibling);
+  }, 200);
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  document.getElementById('googleSignInBtn').addEventListener('click', function(){
+    if(!_auth){ toast('Fill in Firebase config in the code to enable Google login', 'error', 5000); return; }
+    _auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .catch(function(err){ toast('Sign-in failed: ' + err.message, 'error', 6000); });
+  });
+  document.getElementById('userPill').addEventListener('click', function(){
+    var bd = document.createElement('div'); bd.className='dialog-bd';
+    bd.innerHTML = '<div class="dialog-box"><h3>Sign Out?</h3><p>You will return to the login screen.</p><div class="dialog-btns"><button class="btn btn-ghost" id="_n">Cancel</button><button class="btn btn-primary" id="_y">Sign Out</button></div></div>';
+    document.body.appendChild(bd);
+    bd.querySelector('#_n').addEventListener('click', function(){bd.remove();});
+    bd.querySelector('#_y').addEventListener('click', function(){bd.remove(); clearSession(); if(_auth) _auth.signOut(); else _goLogin();});
+    bd.addEventListener('click', function(e){ if(e.target===bd) bd.remove(); });
+  });
+});
+
+/* ── GROQ API ── */
+const GROQ_KEYS = [
+  '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',
+  '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',
+  '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',
+  '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'
+];
+let _ki = 0;
+async function groqChat(messages) {
+  for (let i = 0; i < GROQ_KEYS.length; i++) {
+    try {
+      const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Authorization': 'Bearer ' + GROQ_KEYS[(_ki + i) % GROQ_KEYS.length], 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model: 'llama-3.3-70b-versatile', max_tokens: 1500, temperature: 0.7, messages })
+      });
+      if (res.status === 429 || res.status === 401) continue;
+      if (!res.ok) { const e = await res.json().catch(()=>({})); throw new Error(e?.error?.message || 'Error ' + res.status); }
+      const data = await res.json();
+      return data?.choices?.[0]?.message?.content || '';
+    } catch(e) { if (i === GROQ_KEYS.length - 1) throw e; }
+  }
+  throw new Error('All keys exhausted. Try again in a minute.');
+}
+
+/* ── CURRICULUM ── */
+const CURRICULUM = {
+  marathi: {
+    label: 'Marathi',
+    emoji: '📚',
+    desc: 'अक्षरभारती / कुमारभारती',
+    chapters: [
+      {n:1,t:'स्वप्नवत'},{n:2,t:'संतवाणी'},{n:3,t:'उपास'},{n:4,t:'वटवाघूळ'},
+      {n:5,t:'आभाळमाया'},{n:6,t:'दोन दिवस'},{n:7,t:'जगणे'},{n:8,t:'झुंजार'},
+      {n:9,t:'आत्मचरित्र'},{n:10,t:'प्रेरणा'},{n:11,t:'वादळवारा'},{n:12,t:'मनातलं'},
+    ]
+  },
+  hindi: {
+    label: 'Hindi',
+    emoji: '🖊️',
+    desc: 'लोकभारती',
+    chapters: [
+      {n:1,t:'सूरदास'},{n:2,t:'रहीम के दोहे'},{n:3,t:'कबीर के दोहे'},{n:4,t:'साखी'},
+      {n:5,t:'गोदान (अंश)'},{n:6,t:'गिल्लू'},{n:7,t:'नेताजी का चश्मा'},
+      {n:8,t:'तताँरा-वामीरो कथा'},{n:9,t:'सपनों के से दिन'},
+      {n:10,t:'अब कहाँ दूसरे के दुख से दुखी होने वाले'},{n:11,t:'पद'},
+      {n:12,t:'डायरी का एक पन्ना'},{n:13,t:'हरिहर काका'},{n:14,t:'टोपी शुक्ला'},
+    ]
+  },
+  english: {
+    label: 'English',
+    emoji: '📖',
+    desc: 'Kumarbharati',
+    chapters: [
+      {n:1,t:'Where the Mind is Without Fear'},{n:2,t:"The Thief's Story"},{n:3,t:'On Wings of Courage'},
+      {n:4,t:"All the World's a Stage"},{n:5,t:'Joan of Arc'},{n:6,t:'The Alchemy of Nature'},
+      {n:7,t:'Animals'},{n:8,t:'Three Questions'},{n:9,t:'Connecting the Dots'},{n:10,t:'The Pulley'},
+      {n:11,t:"Let's March"},{n:12,t:'Science and Spirituality'},{n:13,t:'Night of the Scorpion'},
+      {n:14,t:'The Night I Met Einstein'},{n:15,t:'Stephen Hawking'},{n:16,t:'The Will to Win'},
+      {n:17,t:'Unbeatable Super Mom – Mary Kom'},{n:18,t:'The Concert'},
+      {n:19,t:'A Thing of Beauty is a Joy Forever'},{n:20,t:'The Luncheon'},
+    ]
+  },
+  maths: {
+    label: 'Mathematics',
+    emoji: '📐',
+    desc: 'Algebra (Part 1) & Geometry (Part 2)',
+    subSubjects: {
+      'Algebra (Part 1)': [
+        {n:1,t:'Arithmetic Progression'},{n:2,t:'Quadratic Equations'},
+        {n:3,t:'Linear Equations in Two Variables'},{n:4,t:'Probability'},{n:5,t:'Statistics'},
+      ],
+      'Geometry (Part 2)': [
+        {n:1,t:'Similarity'},{n:2,t:'Circle'},{n:3,t:'Coordinate Geometry'},
+        {n:4,t:'Geometric Constructions'},{n:5,t:'Trigonometry'},{n:6,t:'Mensuration'},
+      ]
+    }
+  },
+  science1: {
+    label: 'Science & Technology – Part 1',
+    emoji: '⚗️',
+    desc: 'Physics + Chemistry',
+    chapters: [
+      {n:1,t:'Gravitation'},{n:2,t:'Periodic Classification of Elements'},
+      {n:3,t:'Chemical Reactions and Equations'},{n:4,t:'Effects of Electric Current'},{n:5,t:'Heat'},
+      {n:6,t:'Refraction of Light'},{n:7,t:'Lenses'},{n:8,t:'Metallurgy'},
+      {n:9,t:'Carbon Compounds'},{n:10,t:'Space Missions'},
+    ]
+  },
+  science2: {
+    label: 'Science & Technology – Part 2',
+    emoji: '🧬',
+    desc: 'Biology + Environment',
+    chapters: [
+      {n:1,t:'Heredity and Evolution'},{n:2,t:'Life Processes in Living Organisms – Part 1'},
+      {n:3,t:'Life Processes in Living Organisms – Part 2'},{n:4,t:'Environmental Management'},
+      {n:5,t:'Towards Green Energy'},{n:6,t:'Animal Classification'},
+      {n:7,t:'Introduction to Microbiology'},{n:8,t:'Cell Biology and Biotechnology'},
+      {n:9,t:'Social Health'},{n:10,t:'Disaster Management'},
+    ]
+  },
+  history: {
+    label: 'History',
+    emoji: '🏛️',
+    desc: 'Social Science',
+    chapters: [
+      {n:1,t:'Historiography – Development in the West'},{n:2,t:'Historiography – Indian Tradition'},
+      {n:3,t:'Applied History'},{n:4,t:'History of Indian Arts'},{n:5,t:'Mass Media and History'},
+      {n:6,t:'Entertainment and History'},{n:7,t:'Sports and History'},{n:8,t:'Tourism and History'},
+      {n:9,t:'Heritage Management'},
+    ]
+  },
+  civics: {
+    label: 'Political Science',
+    emoji: '🗳️',
+    desc: 'Civics',
+    chapters: [
+      {n:1,t:'Working of the Constitution'},{n:2,t:'The Electoral Process'},{n:3,t:'Political Parties'},
+      {n:4,t:'Social and Political Movements'},{n:5,t:'Challenges before Indian Democracy'},
+    ]
+  },
+  geography: {
+    label: 'Geography',
+    emoji: '🌏',
+    desc: 'Social Science',
+    chapters: [
+      {n:1,t:'Physical Divisions of India'},{n:2,t:'North Indian Mountains'},
+      {n:3,t:'North Indian Plain'},{n:4,t:'Peninsular Plateau'},
+      {n:5,t:'Western Ghats and Eastern Ghats'},{n:6,t:'Coastal Regions'},{n:7,t:'Indian Islands'},
+    ]
+  },
+};
+
+/* ── STATE ── */
+let state = { subject: null, subSubject: null, selectedChapters: [], messages: [], isLoading: false };
+const SESSION_KEY = 'studymate_v4';
+function saveSession() { sessionStorage.setItem(SESSION_KEY, JSON.stringify({ subject: state.subject, subSubject: state.subSubject, selectedChapters: state.selectedChapters })); }
+function loadSession() { try { const d = JSON.parse(sessionStorage.getItem(SESSION_KEY)||'null'); if(d&&d.subject&&d.selectedChapters?.length) return d; } catch(e){} return null; }
+function clearSession() { sessionStorage.removeItem(SESSION_KEY); }
+
+/* ── STARS ── */
+(function(){const bg=document.querySelector('.bg-wrap');for(let i=0;i<80;i++){const s=document.createElement('div');s.className='star';const sz=Math.random()*2.5+.5;s.style.cssText='width:'+sz+'px;height:'+sz+'px;left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;animation-duration:'+(2+Math.random()*4)+'s;animation-delay:'+(-(Math.random()*4))+'s';bg.appendChild(s);}})();
+
+/* ── MD PARSER ── */
+const MD={esc(s){const m={'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'};return s.replace(/[&<>"']/g,c=>m[c])},inline(t){return t.replace(/`([^`]+)`/g,(_,c)=>'<code>'+this.esc(c)+'</code>').replace(/\*\*(.+?)\*\*/g,(_,a)=>'<strong>'+a+'</strong>').replace(/\*([^*\n]+?)\*/g,(_,a)=>'<em>'+a+'</em>').replace(/(https?:\/\/[^\s<]+)/g,u=>'<a href="'+u+'" target="_blank" rel="noopener" style="color:var(--violet2)">'+u+'</a>')},parse(raw){if(!raw)return'';const lines=raw.split('\n');let html='',inCode=false,lang='',buf=[],list=null;const closeList=()=>{if(list){html+=list==='ol'?'</ol>':'</ul>';list=null;}};for(let i=0;i<lines.length;i++){const ln=lines[i];if(ln.startsWith('```')){if(!inCode){closeList();inCode=true;lang=ln.slice(3).trim()||'code';buf=[];}else{const esc=buf.map(l=>this.esc(l)).join('\n');html+='<pre><div class="code-hdr"><span class="code-lang">'+this.esc(lang)+'</span><button class="copy-code-btn" onclick="_cc(this)">Copy</button></div><code>'+esc+'</code></pre>';inCode=false;buf=[];lang='';}continue;}if(inCode){buf.push(ln);continue;}if(ln.startsWith('> ')){closeList();html+='<blockquote>'+this.inline(ln.slice(2))+'</blockquote>';continue;}const hm=ln.match(/^(#{1,3}) (.+)/);if(hm){closeList();const lv=hm[1].length;html+='<h'+lv+' style="font-size:'+(18-lv)+'px;margin:10px 0 4px">'+this.inline(hm[2])+'</h'+lv+'>';continue;}if(/^[-*] /.test(ln)){if(list!=='ul'){closeList();html+='<ul>';list='ul';}html+='<li>'+this.inline(ln.slice(2))+'</li>';continue;}if(/^\d+\. /.test(ln)){if(list!=='ol'){closeList();html+='<ol>';list='ol';}html+='<li>'+this.inline(ln.replace(/^\d+\. /,''))+'</li>';continue;}closeList();if(/^---+$/.test(ln.trim())){html+='<hr style="border:none;border-top:1px solid rgba(255,255,255,0.07);margin:10px 0">';continue;}if(ln.trim()==='')continue;html+='<p>'+this.inline(ln)+'</p>';}closeList();return html;}};
+window._cc=btn=>{const c=btn.closest('pre').querySelector('code');navigator.clipboard.writeText(c.innerText).then(()=>{btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy',2e3)});};
+
+/* ── TOAST ── */
+function toast(msg,type='info',dur=3500){const wrap=document.getElementById('toast-wrap');const t=document.createElement('div');t.className='toast toast-'+type;t.innerHTML='<span>'+msg+'</span>';wrap.appendChild(t);const go=()=>{t.classList.add('exit');t.addEventListener('animationend',()=>t.remove(),{once:true})};const ti=setTimeout(go,dur);t.addEventListener('click',()=>{clearTimeout(ti);go();});}
+
+/* ── SETUP PAGE ── */
+const subjectGrid=document.getElementById('subjectGrid');
+const chapterSection=document.getElementById('chapterSection');
+const chapterGrid=document.getElementById('chapterGrid');
+const subSubjectPills=document.getElementById('subSubjectPills');
+const selAllBtn=document.getElementById('selAllBtn');
+const selCount=document.getElementById('selCount');
+const saveBtn=document.getElementById('saveBtn');
+
+Object.entries(CURRICULUM).forEach(([key,subj])=>{
+  const chCount=subj.chapters?subj.chapters.length:Object.values(subj.subSubjects).reduce((a,b)=>a+b.length,0);
+  const pill=document.createElement('div');
+  pill.className='subj-pill';
+  pill.dataset.key=key;
+  pill.innerHTML='<span class="subj-emoji">'+subj.emoji+'</span><div style="flex:1;min-width:0"><div class="subj-name">'+subj.label+'</div><div class="subj-count">'+subj.desc+' &middot; '+chCount+' chapters</div></div><div class="subj-check"></div>';
+  pill.addEventListener('click',()=>selectSubject(key,pill));
+  subjectGrid.appendChild(pill);
+});
+
+let activeSubKey=null,activeMathSub=null;
+
+function selectSubject(key,pillEl){
+  document.querySelectorAll('.subj-pill').forEach(p=>p.classList.remove('selected'));
+  pillEl.classList.add('selected');
+  activeSubKey=key;
+  state.selectedChapters=[];
+  renderChapters(key);
+}
+
+function renderChapters(key){
+  const subj=CURRICULUM[key];
+  chapterSection.style.display='block';
+  subSubjectPills.style.display='none';
+  subSubjectPills.innerHTML='';
+  chapterGrid.innerHTML='';
+  activeMathSub=null;
+  if(subj.subSubjects){
+    subSubjectPills.style.display='flex';
+    Object.keys(subj.subSubjects).forEach((sub,idx)=>{
+      const p=document.createElement('button');
+      p.className='sub-pill'+(idx===0?' active':'');
+      p.textContent=sub;
+      p.addEventListener('click',()=>{document.querySelectorAll('.sub-pill').forEach(x=>x.classList.remove('active'));p.classList.add('active');activeMathSub=sub;renderChapterList(subj.subSubjects[sub]);});
+      subSubjectPills.appendChild(p);
+    });
+    activeMathSub=Object.keys(subj.subSubjects)[0];
+    renderChapterList(subj.subSubjects[activeMathSub]);
+  } else {
+    renderChapterList(subj.chapters);
+  }
+}
+
+function renderChapterList(chapters){
+  chapterGrid.innerHTML='';
+  chapters.forEach(ch=>{
+    const isSel=state.selectedChapters.some(c=>c.n===ch.n&&c.t===ch.t);
+    const item=document.createElement('div');
+    item.className='ch-item'+(isSel?' selected':'');
+    item.innerHTML='<div class="ch-num">'+ch.n+'</div><div class="ch-title">'+ch.t+'</div><div class="ch-check"></div>';
+    item.addEventListener('click',()=>toggleChapter(ch,item));
+    chapterGrid.appendChild(item);
+  });
+  updateCount();
+}
+
+function toggleChapter(ch,el){
+  const idx=state.selectedChapters.findIndex(c=>c.n===ch.n&&c.t===ch.t);
+  if(idx>=0){state.selectedChapters.splice(idx,1);el.classList.remove('selected');}
+  else{state.selectedChapters.push(ch);el.classList.add('selected');}
+  updateCount();
+}
+
+function updateCount(){
+  selCount.textContent=state.selectedChapters.length+' selected';
+  saveBtn.disabled=state.selectedChapters.length===0;
+}
+
+selAllBtn.addEventListener('click',()=>{
+  const subj=CURRICULUM[activeSubKey];
+  const all=subj.subSubjects?subj.subSubjects[activeMathSub]||[]:subj.chapters;
+  const allSel=all.every(ch=>state.selectedChapters.some(c=>c.n===ch.n&&c.t===ch.t));
+  if(allSel){state.selectedChapters=state.selectedChapters.filter(c=>!all.some(ch=>ch.n===c.n&&ch.t===c.t));selAllBtn.textContent='Select All';}
+  else{all.forEach(ch=>{if(!state.selectedChapters.some(c=>c.n===ch.n&&c.t===ch.t))state.selectedChapters.push(ch);});selAllBtn.textContent='Deselect All';}
+  renderChapterList(all);
+});
+
+saveBtn.addEventListener('click',()=>{
+  if(!activeSubKey||!state.selectedChapters.length)return;
+  state.subject=activeSubKey;state.subSubject=activeMathSub;state.messages=[];
+  saveSession();openTutorPage();
+});
+
+/* ── TUTOR PAGE ── */
+const tutorSubject=document.getElementById('tutorSubject');
+const tutorChapters=document.getElementById('tutorChapters');
+const contextStrip=document.getElementById('contextStrip');
+const messagesEl=document.getElementById('messages');
+const userInput=document.getElementById('userInput');
+const sendBtn=document.getElementById('sendBtn');
+const backBtn=document.getElementById('backBtn');
+const micBtn=document.getElementById('micBtn');
+
+/* ══════════════════════════════════════════════════════
+   MAHARASHTRA BOARD BALBHARATI — COMPLETE KNOWLEDGE BASE
+   Textbook Q&A, Model Answers, Numericals, Definitions
+   for SSC Standard 10. Used by buildSystemPrompt().
+══════════════════════════════════════════════════════ */
+const KB = {
+
+/* ───────────────────────────────────────────────────
+   SCIENCE PART 1
+─────────────────────────────────────────────────── */
+science1_1: `GRAVITATION — Chapter 1, Science & Technology Part 1
+
+DEFINITIONS:
+- Gravitation: Force of attraction between any two objects in the universe.
+- Acceleration due to gravity (g): Acceleration of freely falling object. g = 9.8 m/s² on Earth.
+- Free fall: Motion under gravity alone, no other force. Initial velocity = 0 when dropped.
+- Weight (W): Force with which Earth attracts object. W = mg. Unit: Newton (N). Vector quantity.
+- Mass (m): Amount of matter. Unit: kg. Scalar. Same everywhere. Measured by beam balance.
+
+MASS vs WEIGHT (2-mark question):
+Mass: amount of matter, scalar, kg, constant everywhere, beam balance.
+Weight: gravitational force W=mg, vector, Newton, changes with location, spring balance.
+
+NEWTON'S UNIVERSAL LAW OF GRAVITATION:
+Every object attracts every other object with force F = Gm₁m₂/r²
+G = 6.67×10⁻¹¹ N·m²/kg² (universal gravitational constant)
+m₁, m₂ = masses of objects; r = distance between their centres.
+
+KEPLER'S LAWS OF PLANETARY MOTION:
+Law 1 (Law of Orbits): Every planet moves in an elliptical orbit with Sun at one focus.
+Law 2 (Law of Areas): Line joining planet to Sun sweeps equal areas in equal time intervals.
+Law 3 (Law of Periods): T² ∝ r³ (square of period is proportional to cube of mean distance from Sun).
+
+KEY FORMULAE:
+g = GM/R² | W = mg | vₑ = √(2gR) = 11.2 km/s (escape velocity)
+v = u+gt | s = ut+½gt² | v² = u²+2gs (equations of motion under gravity)
+
+TEXTBOOK Q&A:
+Q: State Newton's Universal Law of Gravitation. Write its mathematical form.
+A: Every object in the universe attracts every other object with a force that is directly proportional to the product of their masses and inversely proportional to the square of the distance between them.
+Mathematical form: F = Gm₁m₂/r² where G = 6.67×10⁻¹¹ N·m²/kg².
+
+Q: What is the difference between mass and weight?
+A: Mass is the amount of matter in an object. It is scalar, measured in kg, same everywhere in universe, measured by beam balance.
+Weight is the gravitational force on an object, W = mg. It is vector, measured in Newton, changes with location (different on Moon), measured by spring balance.
+
+Q: State Kepler's three laws of planetary motion.
+A: Law 1 (Orbits): Every planet revolves around Sun in elliptical orbit with Sun at one focus.
+Law 2 (Areas): Line joining planet to Sun sweeps equal areas in equal time.
+Law 3 (Periods): T² ∝ r³ — square of period of revolution is proportional to cube of mean distance.
+
+Q: What is escape velocity? What is its value for Earth?
+A: Minimum velocity required for an object to escape from Earth's gravitational pull and go into space.
+vₑ = √(2gR) = √(2 × 9.8 × 6.4×10⁶) = 11.2 km/s.
+
+Q: Give reason — why does the value of g decrease at higher altitudes?
+A: g = GM/(R+h)². As height h increases above Earth's surface, the distance from Earth's centre increases. Since g is inversely proportional to square of distance, g decreases with altitude.
+
+Q: Give reason — the value of g is zero at the centre of Earth.
+A: At the centre, the Earth's mass is distributed equally in all directions. Gravitational pulls from all sides cancel each other out. Net gravitational force = 0, therefore g = 0.
+
+NUMERICALS (step by step):
+N1: Mass of object = 5 kg. Find weight on Earth and Moon. (g_earth=9.8, g_moon=1.63 m/s²)
+Given: m = 5 kg, g_earth = 9.8 m/s², g_moon = 1.63 m/s²
+Find: W_earth, W_moon, mass on Moon
+Formula: W = mg
+W_earth = 5 × 9.8 = 49 N
+W_moon = 5 × 1.63 = 8.15 N
+Mass on Moon = 5 kg (mass is constant everywhere)
+
+N2: Object dropped from height 80 m. Find time to reach ground. (g = 10 m/s²)
+Given: s = 80 m, u = 0, g = 10 m/s²
+Find: t
+Formula: s = ut + ½gt²
+80 = 0 + ½ × 10 × t² → 80 = 5t² → t² = 16 → t = 4 s
+
+N3: Ball thrown upward with velocity 40 m/s. Find maximum height. (g = 10 m/s²)
+Given: u = 40 m/s, v = 0 (at top), g = 10 m/s²
+Find: h (maximum height)
+Formula: v² = u² - 2gh → 0 = 1600 - 2×10×h → h = 80 m
+Time to reach top: v = u - gt → 0 = 40 - 10t → t = 4 s`,
+
+science1_2: `PERIODIC CLASSIFICATION OF ELEMENTS — Chapter 2, Science Part 1
+
+HISTORY OF PERIODIC TABLE:
+Dobereiner (1829): Triads — middle element's atomic mass = average of other two. Example: Li(7), Na(23), K(39) — Na = (7+39)/2 = 23. Only worked for a few sets. Could not classify all elements.
+Newlands (1866): Law of Octaves — every 8th element has properties similar to 1st (like musical scale do-re-mi). Failed after calcium. Placed unlike elements (Co, Ni) in same slot.
+Mendeleev (1869): Arranged 63 elements by increasing atomic mass. Elements with similar properties in same group. Left gaps for undiscovered elements. Predicted: Eka-silicon (=Germanium), Eka-boron (=Scandium), Eka-aluminium (=Gallium). Limitation: could not explain position of isotopes; Hydrogen placement; wrong order for Ar-K, Co-Ni pairs.
+Moseley (1913): Modern Periodic Law — properties of elements are periodic functions of their ATOMIC NUMBERS (not mass). Corrected all anomalies of Mendeleev's table.
+
+MODERN PERIODIC TABLE:
+7 periods (horizontal rows), 18 groups (vertical columns).
+Period 1: 2 elements | Periods 2,3: 8 each | Periods 4,5: 18 each | Period 6: 32.
+Metals: left side. Non-metals: right side. Metalloids (B, Si, Ge, As, Sb, Te): zigzag line.
+
+PERIODIC TRENDS:
+Atomic radius: Decreases across period (more protons pull electrons closer). Increases down group (more shells).
+Ionization energy: Increases across period (smaller atom, harder to remove electron). Decreases down group.
+Electronegativity: Increases across period. Decreases down group. Fluorine = highest electronegativity.
+Valency: 1, 2, 3, 4, 3, 2, 1, 0 across period (groups 1 to 18).
+
+TEXTBOOK Q&A:
+Q: What is Modern Periodic Law? Who proposed it?
+A: Properties of elements are periodic functions of their atomic numbers. Proposed by Henry Moseley in 1913.
+
+Q: What are the limitations of Mendeleev's Periodic Table?
+A: (1) Could not explain position of isotopes. (2) Hydrogen placement was problematic. (3) Some elements placed in wrong order of atomic masses (Ar before K, Co before Ni). (4) Could not predict noble gases.
+
+Q: Explain the trend in atomic radius across a period and down a group.
+A: Across period (left to right): atomic radius decreases because nuclear charge increases while electrons are added in same shell — stronger pull brings electrons closer.
+Down group (top to bottom): atomic radius increases because new electron shells are added, increasing size.`,
+
+science1_3: `CHEMICAL REACTIONS AND EQUATIONS — Chapter 3, Science Part 1
+
+DEFINITIONS:
+Chemical reaction: Process where reactants are converted to products with different properties.
+Chemical equation: Representation using symbols and formulae. Reactants on left, products on right of arrow.
+Balanced equation: Number of atoms of each element equal on both sides (Law of Conservation of Mass).
+
+TYPES OF REACTIONS (with equations):
+1. Combination: A + B → AB  
+   CaO + H₂O → Ca(OH)₂ (quicklime + water → slaked lime, exothermic)
+2. Decomposition: AB → A + B
+   Thermal: CaCO₃ →(heat) CaO + CO₂ (limestone)
+   Electrolytic: 2H₂O →(electricity) 2H₂ + O₂
+   Photolytic: 2AgCl →(sunlight) 2Ag + Cl₂ (used in photography)
+3. Displacement: Fe + CuSO₄ → FeSO₄ + Cu (iron displaces copper — more reactive displaces less)
+4. Double displacement: Na₂SO₄ + BaCl₂ → BaSO₄↓ + 2NaCl (white precipitate formed)
+5. Oxidation-Reduction (Redox): OIL RIG — Oxidation Is Loss, Reduction Is Gain (of electrons)
+   CuO + H₂ → Cu + H₂O (CuO reduced, H₂ oxidised)
+6. Exothermic: heat released. Examples: combustion, respiration, neutralisation, CaO+H₂O.
+7. Endothermic: heat absorbed. Examples: photosynthesis, thermal decomposition of limestone.
+
+CORROSION AND RANCIDITY:
+Corrosion: Chemical attack on metals by environment.
+Iron rusting: 4Fe + 3O₂ + xH₂O → 2Fe₂O₃·xH₂O (hydrated iron oxide, reddish-brown)
+Prevention: painting, oiling, galvanising (zinc coat), electroplating, alloying (stainless steel).
+
+Rancidity: Oxidation of fats/oils in food — bad smell, taste.
+Prevention: antioxidants (BHA, BHT), airtight containers, refrigeration, nitrogen atmosphere, vacuum packaging.
+
+TEXTBOOK Q&A:
+Q: Why is it necessary to balance a chemical equation?
+A: Law of Conservation of Mass states matter cannot be created or destroyed. Total mass of reactants must equal total mass of products. Balancing ensures equal number of atoms of each element on both sides.
+
+Q: Give reason: Iron articles are painted or galvanised.
+A: Iron reacts with atmospheric oxygen and moisture to form Fe₂O₃·xH₂O (rust). Painting or galvanising (coating with zinc) prevents contact of iron with O₂ and H₂O, thus preventing corrosion.
+
+Q: What is rancidity? How is it prevented?
+A: Rancidity is the oxidation of fats and oils in food making it smell and taste bad.
+Prevention: (1) Add antioxidants like BHA or BHT. (2) Store in airtight containers. (3) Refrigerate. (4) Use nitrogen atmosphere (chips packets). (5) Vacuum packaging.
+
+Q: Distinguish between exothermic and endothermic reactions with examples.
+A: Exothermic: Heat is released during reaction. Temperature of surroundings increases.
+Examples: Combustion of coal (C+O₂→CO₂), neutralisation (acid+base→salt+water), dissolution of NaOH, respiration.
+Endothermic: Heat is absorbed during reaction. Temperature of surroundings decreases.
+Examples: Photosynthesis, thermal decomposition of limestone (CaCO₃→CaO+CO₂), dissolving NH₄NO₃ in water.
+
+Q: Give reason: Silver chloride turns grey when exposed to sunlight.
+A: Photodecomposition occurs: 2AgCl →(sunlight) 2Ag + Cl₂. Finely divided metallic silver (grey colour) is formed. This reaction is used in black-and-white photography.`,
+
+science1_4: `EFFECTS OF ELECTRIC CURRENT — Chapter 4, Science Part 1
+
+DEFINITIONS AND FORMULAE:
+Electric current (I) = charge/time = Q/t. Unit: Ampere (A).
+Potential difference (V) = work done / charge. Unit: Volt (V).
+Resistance (R): opposition to current flow. Unit: Ohm (Ω).
+Ohm's Law: V = IR (at constant temperature). V-I graph is straight line through origin.
+R = ρL/A (ρ=resistivity, L=length, A=cross-sectional area)
+
+COMBINATIONS:
+Series: R_s = R₁+R₂+R₃. Same current through all. Different voltages. V=V₁+V₂+V₃.
+Parallel: 1/R_p = 1/R₁+1/R₂+1/R₃. Same voltage across all. Different currents. I=I₁+I₂+I₃.
+
+POWER AND ENERGY:
+P = VI = I²R = V²/R. Unit: Watt (W).
+Energy: W = Pt = VIt. Unit: Joule (J) or kWh (1 kWh = 3.6×10⁶ J = 1 unit of electricity).
+Joule's Law: H = I²Rt. Heat produced proportional to I², R, and t.
+
+DOMESTIC WIRING:
+Live wire: Red or Brown. 220V. Dangerous.
+Neutral wire: Black or Blue. 0V. Completes circuit.
+Earth wire: Green or Yellow. Safety — carries leakage current to ground.
+3-pin plug: largest pin = Earth. Supply: 220V AC, 50 Hz.
+Fuse: thin wire of high resistance, low melting point (tin-lead alloy). Melts if current exceeds safe limit — breaks circuit, protects appliances. Connected in SERIES with circuit on LIVE wire.
+MCB: Miniature Circuit Breaker — modern fuse, can be reset.
+
+TEXTBOOK Q&A:
+Q: State Ohm's Law. What are its limitations?
+A: Ohm's Law: At constant temperature, current (I) through a conductor is directly proportional to potential difference (V) across it. V = IR (R = constant = resistance).
+Limitations: Does NOT apply to (1) non-metallic conductors (2) electrolyte solutions (3) vacuum tubes (4) semiconductors (diodes, transistors) (5) conductors at very high temperatures.
+
+Q: Derive the formula for equivalent resistance in series combination.
+A: In series, same current I flows through all resistors.
+V = V₁ + V₂ + V₃ (voltages add)
+IR_s = IR₁ + IR₂ + IR₃
+R_s = R₁ + R₂ + R₃
+
+Q: Derive formula for parallel combination.
+A: In parallel, same voltage V across all.
+I = I₁ + I₂ + I₃ (currents add)
+V/R_p = V/R₁ + V/R₂ + V/R₃
+1/R_p = 1/R₁ + 1/R₂ + 1/R₃
+
+Q: What is a fuse? What material is it made of? Why is it connected in series?
+A: Fuse is a safety device — a short piece of thin wire of high resistance and low melting point (tin-lead alloy) connected in series in the circuit.
+When current exceeds safe limit due to short circuit/overloading → fuse wire melts → circuit breaks → appliances protected.
+Connected in SERIES so that all current passes through it. Connected on LIVE wire side.
+
+Q: Why is the Earth wire used in appliances?
+A: Earth wire provides a safe path for leakage current. If insulation fails and current leaks to metal body, Earth wire carries this current safely to ground. Without earthing, a person touching the appliance would get a severe electric shock.
+
+NUMERICALS:
+N1: Three resistors 2Ω, 3Ω, 6Ω connected in parallel. Find equivalent resistance.
+Given: R₁=2Ω, R₂=3Ω, R₃=6Ω
+1/R_p = 1/2 + 1/3 + 1/6 = 3/6 + 2/6 + 1/6 = 6/6 = 1
+R_p = 1Ω
+
+N2: Electric bulb rated 60W, 220V. Find resistance and current.
+Given: P=60W, V=220V. Find: R, I.
+R = V²/P = 220×220/60 = 48400/60 = 806.7 Ω
+I = P/V = 60/220 = 0.27 A
+
+N3: Current 5A through resistance 10Ω for 2 minutes. Find heat produced.
+Given: I=5A, R=10Ω, t=2×60=120s. Find: H.
+H = I²Rt = 5² × 10 × 120 = 25 × 10 × 120 = 30,000 J = 30 kJ`,
+
+science1_5: `HEAT — Chapter 5, Science Part 1
+
+TEMPERATURE SCALES:
+Celsius to Kelvin: K = °C + 273
+Celsius to Fahrenheit: F = (9/5)C + 32
+Fahrenheit to Celsius: C = (5/9)(F - 32)
+Example: 100°C = 373K = 212°F. 0°C = 273K = 32°F.
+
+SPECIFIC HEAT CAPACITY:
+Formula: Q = mcΔT (Q = heat in J, m = mass in kg, c = specific heat in J/kg°C, ΔT = temperature change)
+Specific heat of water = 4200 J/kg°C (highest of all common substances — good coolant and heat reservoir)
+
+LATENT HEAT:
+Q = mL (L = latent heat, temperature does NOT change during state change)
+Latent heat of fusion of ice: Lf = 336 J/g = 3.36×10⁵ J/kg
+Latent heat of vaporisation of water: Lv = 2260 J/g = 2.26×10⁶ J/kg
+Lv > Lf because intermolecular forces must be completely overcome during vaporisation.
+
+ANOMALOUS EXPANSION OF WATER:
+Water contracts on cooling like all substances until 4°C. Below 4°C it EXPANDS (anomalous).
+Water is DENSEST at 4°C. Ice is LESS dense than water (so ice floats).
+Significance: In winter, ice forms on top of lakes. Water below stays at 4°C. Aquatic life survives under ice.
+
+MODES OF HEAT TRANSFER:
+Conduction: Through direct contact (solids). Particles vibrate and pass energy. Silver = best conductor. Wood = insulator.
+Convection: Through movement of fluid (liquid/gas). Hot fluid rises (less dense), cold sinks. Sea breeze, room heating.
+Radiation: Through electromagnetic waves. No medium needed. Heat from Sun reaches Earth. Black surfaces absorb more. Shiny surfaces reflect more.
+
+TEXTBOOK Q&A:
+Q: What is specific heat capacity? Write formula and give its SI unit.
+A: Amount of heat required to raise temperature of 1 kg of a substance by 1°C (or 1 K).
+Formula: Q = mcΔT. SI unit: J/(kg·°C) or J/(kg·K).
+Water has the highest specific heat capacity (4200 J/kg°C) — this is why it is used as a coolant and why coastal areas have moderate climate.
+
+Q: What is latent heat? Distinguish between latent heat of fusion and vaporisation.
+A: Latent heat is the heat absorbed or released during change of state at constant temperature.
+Formula: Q = mL.
+Latent heat of fusion (Lf): Heat needed to change solid to liquid at melting point. For ice: Lf = 336 J/g.
+Latent heat of vaporisation (Lv): Heat needed to change liquid to vapour at boiling point. For water: Lv = 2260 J/g.
+Lv > Lf because during vaporisation, intermolecular bonds must be completely broken.
+
+Q: What is anomalous expansion of water? What is its significance?
+A: Water expands on cooling below 4°C, unlike most substances.
+Significance: In winter, water at surface cools to 4°C and sinks (densest). Water below 4°C is less dense and stays above. Ice forms at top. Aquatic organisms survive in 4°C water below ice.
+
+NUMERICALS:
+N1: Heat 2 kg water from 25°C to 100°C. (c = 4200 J/kg°C)
+Given: m=2 kg, T₁=25°C, T₂=100°C, c=4200. Find: Q.
+Q = mcΔT = 2 × 4200 × (100-25) = 2 × 4200 × 75 = 630,000 J = 630 kJ.
+
+N2: How much heat needed to melt 500 g of ice at 0°C? (Lf = 336 J/g)
+Given: m=500g, Lf=336 J/g. Find: Q.
+Q = mL = 500 × 336 = 168,000 J = 168 kJ.`,
+
+science1_6: `REFRACTION OF LIGHT — Chapter 6, Science Part 1
+
+DEFINITIONS:
+Refraction: Bending of light when it passes from one transparent medium to another due to change in speed.
+Refractive index (n): Ratio of speed of light in vacuum to speed in medium. n = c/v = sin i / sin r.
+Critical angle (C): Angle of incidence in denser medium at which angle of refraction = 90°. sin C = 1/n.
+Total Internal Reflection (TIR): When angle of incidence in denser medium > critical angle, light reflects completely back into denser medium.
+
+LAWS OF REFRACTION (Snell's Law):
+(1) Incident ray, refracted ray, and normal at point of incidence all lie in the same plane.
+(2) n₁ sin θ₁ = n₂ sin θ₂ (ratio sin i / sin r = constant for a given pair of media)
+
+Denser medium → speed decreases → bends TOWARDS normal.
+Rarer medium → speed increases → bends AWAY from normal.
+n_water ≈ 1.33 | n_glass ≈ 1.5 | n_diamond = 2.42 (highest → most brilliant)
+
+CONDITIONS FOR TIR:
+(1) Light must travel from denser to rarer medium.
+(2) Angle of incidence must be GREATER than critical angle.
+
+APPLICATIONS OF TIR:
+Optical fibres: light travels by repeated TIR inside glass fibre. Used in internet cables, telephone, medical endoscopes (doctors see inside body without surgery).
+Diamonds: n=2.42, C=24°. Light undergoes multiple TIR — diamonds sparkle.
+Mirages: TIR of light in hot air layers near ground. Travellers see "water" in desert.
+Prisms: In periscopes, binoculars — prisms replace mirrors using TIR.
+
+DISPERSION:
+White light splits into VIBGYOR (Violet, Indigo, Blue, Green, Yellow, Orange, Red) through a prism.
+Violet bends MOST (highest n, shortest wavelength). Red bends LEAST (lowest n, longest wavelength).
+Rainbow = dispersion + TIR inside water droplets.
+
+TEXTBOOK Q&A:
+Q: State the laws of refraction of light.
+A: (1) The incident ray, refracted ray, and normal at the point of incidence all lie in the same plane.
+(2) Snell's Law: n₁sinθ₁ = n₂sinθ₂. The ratio of sine of angle of incidence to sine of angle of refraction is constant for a given pair of media (n = sin i / sin r = constant).
+
+Q: What is Total Internal Reflection? State its conditions and applications.
+A: TIR: When light travels from denser to rarer medium and angle of incidence exceeds critical angle, light is completely reflected back — no refraction occurs.
+Conditions: (1) Light must travel from denser to rarer medium. (2) Angle of incidence > critical angle.
+Applications: Optical fibres (internet, endoscope), diamonds (sparkle), mirages, prisms in periscopes.
+
+Q: Why does a diamond sparkle?
+A: Diamond has very high refractive index (n=2.42) giving a very small critical angle (≈24°). Light entering diamond undergoes multiple Total Internal Reflections before emerging, creating brilliant sparkle.
+
+Q: Give reason: A swimming pool appears shallower than it actually is.
+A: Light from the bottom of pool travels from denser medium (water, n=1.33) to rarer medium (air, n=1). It bends away from normal. The virtual image of the bottom is formed above the actual bottom, so the pool appears shallower.`,
+
+science1_7: `LENSES — Chapter 7, Science Part 1
+
+TYPES:
+Convex (converging) lens: Thicker at centre. Converges parallel rays to principal focus. Focal length positive.
+Concave (diverging) lens: Thinner at centre. Diverges parallel rays. Focal length negative. ALWAYS gives virtual, erect, diminished image.
+
+LENS FORMULA: 1/v − 1/u = 1/f
+Sign convention: distances measured from optical centre. Direction of incident light = positive direction.
+u = object distance (always negative, object on left). v = image distance. f = focal length.
+Magnification: m = v/u = h'/h. Positive m → virtual erect. Negative m → real inverted.
+Power: P = 1/f (f in metres). Unit: Dioptre (D). Convex: P positive. Concave: P negative.
+Combination: P_total = P₁ + P₂.
+
+IMAGE FORMATION BY CONVEX LENS:
+Object beyond 2F → real, inverted, diminished (camera, eye)
+Object at 2F → real, inverted, same size
+Object between F and 2F → real, inverted, magnified (projector)
+Object at F → image at infinity (searchlight, parallel beam)
+Object between F and O → virtual, erect, magnified (magnifying glass)
+
+HUMAN EYE:
+Cornea: main refraction. Iris: controls amount of light. Pupil: opening. Lens: fine focus (ciliary muscles). Retina: image formed (rods and cones). Optic nerve: sends signal to brain.
+Near point: 25 cm. Far point: infinity.
+
+EYE DEFECTS:
+Myopia (Short-sight): Image forms in FRONT of retina. Cannot see distant objects clearly. Cause: elongated eyeball or thick lens. Correction: CONCAVE lens.
+Hypermetropia (Long-sight): Image forms BEHIND retina. Cannot see near objects clearly. Cause: short eyeball or weak lens. Correction: CONVEX lens.
+Presbyopia: Old age, ciliary muscles weaken, cannot accommodate. Correction: BIFOCAL lens (both defects often combined in old age).
+Astigmatism: Uneven curvature of cornea. Correction: CYLINDRICAL lens.
+
+TEXTBOOK Q&A:
+Q: Compare convex and concave lenses.
+A: Convex lens: thicker at centre, converging, positive focal length, can form real or virtual image.
+Concave lens: thinner at centre, diverging, negative focal length, always forms virtual, erect, diminished image.
+
+Q: State the lens formula. Define magnification.
+A: Lens formula: 1/v − 1/u = 1/f (using New Cartesian sign convention).
+Magnification m = v/u = h'/h. If m>0: virtual erect image. If m<0: real inverted image.
+
+Q: What are the defects of vision? How are they corrected?
+A: Myopia (short-sight): distant objects blur, image in front of retina. Corrected by concave lens.
+Hypermetropia (long-sight): near objects blur, image behind retina. Corrected by convex lens.
+Presbyopia: old age defect, ciliary muscles weaken. Corrected by bifocal lens.
+Astigmatism: irregular cornea curvature. Corrected by cylindrical lens.
+
+NUMERICALS:
+N1: Object placed 30 cm in front of convex lens of focal length 20 cm. Find image distance and magnification.
+Given: u = −30 cm, f = +20 cm. Find: v, m.
+1/v − 1/u = 1/f
+1/v − 1/(−30) = 1/20
+1/v + 1/30 = 1/20
+1/v = 1/20 − 1/30 = 3/60 − 2/60 = 1/60
+v = +60 cm (positive → real, inverted, on other side of lens)
+m = v/u = 60/(−30) = −2 (inverted, magnified twice)
+
+N2: Convex lens P₁=+4D, Concave lens P₂=−1.5D in contact. Find combined power and focal length.
+P = P₁+P₂ = 4+(−1.5) = +2.5 D
+f = 1/P = 1/2.5 = 0.4 m = 40 cm (converging lens)`,
+
+science1_8: `METALLURGY — Chapter 8, Science Part 1
+
+DEFINITIONS:
+Mineral: Naturally occurring chemical substance containing metal or metal compound in earth's crust.
+Ore: Mineral from which metal can be extracted profitably and conveniently. All ores are minerals but not all minerals are ores.
+Gangue: Unwanted rocky impurities (sand, clay, limestone) mixed with ore. Removed during metallurgy.
+Flux: Substance added during smelting to remove gangue. Forms slag (gangue + flux).
+
+CONCENTRATION / DRESSING OF ORE:
+Hydraulic washing (Gravity separation): For heavy ores. Water current washes lighter gangue away. Used for cassiterite (SnO₂).
+Froth flotation: For sulphide ores. Ore powdered, mixed with water and pine oil. Air blown → sulphide ore attaches to froth, gangue sinks. Used for ZnS, PbS, CuFeS₂.
+Magnetic separation: For magnetic ores. Belt with magnet — magnetic ore (magnetite Fe₃O₄) is attracted, non-magnetic gangue falls off.
+Chemical leaching: For noble metals. Gold: dissolved in dilute NaCN (sodium cyanide) solution. Aluminium ore (bauxite): dissolved in concentrated NaOH (Bayer's Process) — Al₂O₃ dissolves, impurities do not.
+
+EXTRACTION:
+Roasting: Sulphide ore heated strongly in excess AIR. SO₂ gas released.
+2ZnS + 3O₂ → 2ZnO + 2SO₂ (zinc blende roasted to zinc oxide)
+Calcination: Carbonate ore heated in limited/no air. CO₂ released.
+ZnCO₃ → ZnO + CO₂ | CaCO₃ → CaO + CO₂
+Smelting: Reduction with carbon/coke at high temperature.
+
+SPECIFIC METALS:
+Aluminium: Ore = Bauxite (Al₂O₃·2H₂O). Purification: Bayer's Process (NaOH dissolves Al₂O₃). Electrolysis of molten alumina + cryolite (Hall-Heroult process). Cathode: Al³⁺+3e⁻→Al. Anode: 2O²⁻→O₂+4e⁻.
+Iron: Ore = Haematite (Fe₂O₃). Blast furnace with coke and limestone → pig iron (contains 4% C). Converted to steel by removing C.
+Copper: Ore = Copper pyrite (CuFeS₂). Electrolytic refining gives pure copper.
+
+ELECTROLYTIC REFINING:
+Crude metal = anode (positive). Pure metal = cathode (negative). Metal salt solution = electrolyte.
+Current → anode dissolves (crude metal), pure metal deposits on cathode. Precious metals (Au, Ag, Pt) collect as anode mud below anode.
+
+ALLOYS:
+Steel: Fe + C (0.2-2%). Stainless steel: Fe+C+Ni+Cr. Bronze: Cu+Sn. Brass: Cu+Zn. Duralumin: Al+Cu+Mg+Mn (light, strong — aircraft).
+
+TEXTBOOK Q&A:
+Q: Define mineral, ore, and gangue with examples.
+A: Mineral: naturally occurring compound of metal in earth's crust. Examples: bauxite, haematite, galena.
+Ore: mineral from which metal can be profitably extracted. Examples: haematite (for iron), bauxite (for aluminium).
+Gangue: unwanted impurities (rocky material) mixed with ore. Must be removed before metal extraction.
+
+Q: Distinguish between roasting and calcination.
+A: Roasting: Sulphide ores heated in EXCESS air. SO₂ is released. Example: 2ZnS+3O₂→2ZnO+2SO₂.
+Calcination: Carbonate/hydroxide ores heated in LIMITED air. CO₂ is released. Example: ZnCO₃→ZnO+CO₂.
+Both processes convert ore to metal oxide for easier reduction.
+
+Q: What is electrolytic refining? Explain with diagram.
+A: Electrolytic refining removes impurities from crude metal to get 99.9% pure metal.
+Setup: Crude metal = anode (+). Pure metal = cathode (−). Metal salt solution = electrolyte.
+Process: On passing current → crude metal (anode) dissolves → metal ions migrate → pure metal deposits on cathode. Impurities fall below anode as anode mud (contains precious metals Au, Ag, Pt).`,
+
+science1_9: `CARBON COMPOUNDS — Chapter 9, Science Part 1
+
+SPECIAL PROPERTIES OF CARBON:
+Tetravalency: Carbon has 4 valence electrons → forms 4 covalent bonds (with C, H, O, N, S, halogens).
+Catenation: Carbon atoms can bond with each other forming long chains, branched chains, and rings.
+Combined effect: Millions of organic compounds possible.
+
+HYDROCARBONS:
+Alkanes (saturated, single bonds): CₙH₂ₙ₊₂. CH₄ methane, C₂H₆ ethane, C₃H₈ propane.
+Alkenes (one double bond): CₙH₂ₙ. C₂H₄ ethene.
+Alkynes (one triple bond): CₙH₂ₙ₋₂. C₂H₂ ethyne (acetylene).
+
+FUNCTIONAL GROUPS:
+−OH: Alcohol (hydroxyl). −CHO: Aldehyde. >C=O: Ketone. −COOH: Carboxylic acid. −NH₂: Amine. −Cl: Halide.
+
+HOMOLOGOUS SERIES:
+Same functional group. Each member differs by CH₂ (molecular mass +14). Same general formula. Similar chemical properties. Gradual change in physical properties (boiling point increases with chain length).
+
+IMPORTANT COMPOUNDS:
+Ethanol (C₂H₅OH): Colourless liquid, pleasant smell, miscible with water. bp = 78°C. Uses: fuel, antiseptic, solvent, beverages (fermentation of sugars by yeast). Denatured alcohol: ethanol + methanol + pyridine (poisonous, prevents drinking).
+Ethanoic acid (CH₃COOH): Carboxylic acid (−COOH group). Vinegar = 5-8% solution. Sour taste. bp = 118°C.
+
+SOAPS AND DETERGENTS:
+Saponification: Fat/oil + NaOH → Soap + Glycerol (sodium salt of fatty acid)
+NaOH → hard soap (bathing, washing). KOH → soft soap (shaving cream).
+Soap molecule: Hydrophilic head (−COO⁻Na⁺, water-loving). Hydrophobic tail (long hydrocarbon chain, oil-loving).
+Micelle: Soap molecules arrange with tails surrounding grease/dirt, heads towards water. Grease lifted off, washed away.
+Soap does NOT work in hard water: Hard water has Ca²⁺/Mg²⁺ → scum: Ca²⁺ + 2RCOONa → (RCOO)₂Ca↓ + 2Na⁺.
+Detergents: Synthetic, work in hard water, branched chain causes environmental pollution.
+
+TEXTBOOK Q&A:
+Q: What is catenation? Why is carbon special?
+A: Catenation is the unique property of carbon to form bonds with other carbon atoms to create long chains, branched chains, and rings.
+Carbon is unique because: (1) Tetravalency — 4 bonds available. (2) Catenation — chains of any length. Together these properties explain the existence of millions of carbon compounds (organic chemistry).
+
+Q: What is saponification? Write the chemical reaction.
+A: Saponification is the reaction of a fat or oil with NaOH (or KOH) to produce soap and glycerol.
+Fat/Oil + NaOH → Soap (sodium salt of fatty acid) + Glycerol
+e.g., C₃H₅(OCOC₁₇H₃₅)₃ + 3NaOH → 3C₁₇H₃₅COONa + C₃H₅(OH)₃
+NaOH gives hard soap. KOH gives soft soap.
+
+Q: How does soap work? What is a micelle?
+A: Soap molecule has hydrophilic head (−COO⁻Na⁺, water-loving) and hydrophobic tail (hydrocarbon, oil-loving).
+When soap is added to dirty water: tails surround grease/oil (hydrophobic), heads face water (hydrophilic). This spherical arrangement is called a MICELLE. Micelle keeps dirt suspended in water and is washed away when we rinse.
+
+Q: Why does soap not work in hard water?
+A: Hard water contains Ca²⁺ and Mg²⁺ ions. These react with soap to form insoluble scum: Ca²⁺ + 2RCOONa → (RCOO)₂Ca↓ + 2Na⁺. Scum wastes soap and leaves residue on clothes. Detergents work in hard water because they form soluble calcium/magnesium salts.
+
+Q: State the characteristics of a homologous series.
+A: (1) Same functional group. (2) Same general formula. (3) Successive members differ by CH₂ (14 mass units). (4) Similar chemical properties. (5) Gradual change in physical properties (e.g., boiling point increases). (6) Can be prepared by similar methods.`,
+
+science1_10: `SPACE MISSIONS — Chapter 10, Science Part 1
+
+ISRO:
+Full form: Indian Space Research Organisation.
+Founded: 1969. Father of Indian Space Programme: Dr. Vikram Sarabhai.
+Headquarters: Bengaluru (Bangalore).
+First Indian satellite: Aryabhata (1975, launched by Soviet Union).
+Rockets: PSLV (Polar Satellite Launch Vehicle) — most reliable, workhorse of ISRO. GSLV (Geosynchronous Satellite Launch Vehicle).
+
+MAJOR MISSIONS:
+Chandrayaan-1 (October 22, 2008): India's first lunar probe. Orbited Moon at 100 km altitude. Moon Impact Probe (MIP) released. ACHIEVEMENT: Confirmed presence of water molecules on Moon's surface. Mission: 312 days.
+Chandrayaan-2 (July 22, 2019): Orbiter (still operational). Vikram lander — hard landing on Sept 7, 2019. Pragyan rover could not operate.
+Chandrayaan-3 (July 14, 2023 launch; August 23, 2023 landing): Successful soft landing near Moon's south pole on August 23, 2023. Pragyan rover explored surface for 14 days. India = 4th country to land on Moon (after USA, USSR, China). India = FIRST country to land near south pole.
+Mangalyaan / Mars Orbiter Mission (MOM): Launched November 5, 2013. Reached Mars orbit: September 24, 2014. India = FIRST Asian nation to reach Mars. India = FIRST country in world to succeed in first attempt. Cost ≈ ₹450 crore (less than Hollywood film Gravity — ₹500 crore). Studied Martian atmosphere, surface, mineralogy.
+
+SATELLITE USES:
+Communication (INSAT, GSAT): TV, telephone, internet, radio.
+Weather forecasting (METSAT/Kalpana-1): cyclone warnings, rainfall prediction.
+Remote sensing (IRS series): crop monitoring, forest survey, flood mapping, urban planning.
+Navigation (GPS — Global Positioning System): 24 satellites, find position anywhere on Earth.
+Education (EDUSAT): distance learning programmes.
+Military: surveillance, strategic communication.
+
+INTERNATIONAL MILESTONES:
+Neil Armstrong — first human on Moon (Apollo 11, July 20, 1969, USA).
+Rakesh Sharma — first Indian in space (April 2, 1984, Soviet Salyut 7 space station). Famous words to Indira Gandhi: "Saare jahan se achcha Hindustan hamara."
+ISS (International Space Station): Orbits at ~400 km. Joint project of USA, Russia, Europe, Japan, Canada.
+
+TEXTBOOK Q&A:
+Q: What is ISRO? Who is the father of India's space programme?
+A: ISRO = Indian Space Research Organisation, established in 1969, headquarters at Bengaluru. Dr. Vikram Sarabhai is called the father of India's space programme.
+
+Q: What was the major achievement of Chandrayaan-1?
+A: Chandrayaan-1 (2008) confirmed the presence of water molecules on the surface of the Moon through its Moon Impact Probe (MIP). This was a landmark discovery — the existence of water on Moon had been debated for decades.
+
+Q: Why is Mangalyaan (MOM) considered a historic achievement?
+A: (1) India became the first Asian nation to successfully reach Mars orbit. (2) India was the first country in the world to succeed in its first attempt. (3) It was the cheapest Mars mission ever — ₹450 crore. (4) Achieved with indigenous technology.`,
+
+/* ───────────────────────────────────────────────────
+   SCIENCE PART 2
+─────────────────────────────────────────────────── */
+science2_1: `HEREDITY AND EVOLUTION — Chapter 1, Science Part 2
+
+MENDEL'S EXPERIMENTS (Gregor Mendel, 1822-1884, "Father of Genetics"):
+Experimental plant: Garden pea (Pisum sativum). 7 pairs of contrasting traits. 8 years of work. 10,000+ plants.
+Selected traits: tall/dwarf, round/wrinkled seeds, yellow/green seeds, red/white flowers, etc.
+
+MONOHYBRID CROSS (one trait):
+P generation: TT (Tall) × tt (dwarf)
+F1: All Tt (Tall) — only dominant trait appears (Dominance)
+F1 × F1: Tt × Tt
+F2: TT : Tt : tt = 1 : 2 : 1 (genotype ratio)
+Tall : Dwarf = 3 : 1 (phenotype ratio)
+
+DIHYBRID CROSS (two traits):
+P: TTGG × ttgg → F1: TtGg (all tall+round)
+F2: 9 Tall Round : 3 Tall wrinkled : 3 Dwarf Round : 1 Dwarf wrinkled = 9:3:3:1
+
+MENDEL'S LAWS:
+Law of Dominance: In a hybrid, the dominant allele masks the effect of recessive allele. Only dominant trait appears in F1.
+Law of Segregation: The two alleles for a character separate (segregate) during gamete formation. Each gamete carries only one allele.
+Law of Independent Assortment: Alleles of different genes assort independently of each other during gamete formation (genes on different chromosomes).
+
+TERMINOLOGY:
+Gene: unit of heredity on chromosome. Allele: alternate form of a gene (T and t).
+Dominant: allele expressed in F1 (T = Tall). Recessive: allele hidden in F1 (t = dwarf).
+Homozygous: both alleles same (TT or tt). Heterozygous: alleles different (Tt).
+Genotype: genetic makeup (TT, Tt, tt). Phenotype: observable character (Tall, Dwarf).
+
+SEX DETERMINATION IN HUMANS:
+Females: XX chromosomes. Males: XY chromosomes.
+Mother gives only X to ALL children (all eggs carry X).
+Father gives either X (→ girl, XX) or Y (→ boy, XY).
+CONCLUSION: FATHER/MALE PARENT determines the sex of the child.
+(Note: In many animals and some humans, XX = female, XY = male. In birds it is reversed.)
+
+DNA:
+Full form: Deoxyribonucleic acid. Carries genetic information.
+Double helix model: discovered by James Watson and Francis Crick (1953).
+Located in nucleus on chromosomes. Humans: 46 chromosomes (23 pairs).
+Gene = specific segment of DNA that codes for a protein/trait.
+
+EVOLUTION:
+Charles Darwin (1809-1882): Theory of Natural Selection.
+Key ideas: (1) All organisms produce more offspring than can survive. (2) Variation exists in population. (3) Some variations are heritable. (4) Organisms with favorable variations survive and reproduce more (survival of the fittest). (5) Over generations, favorable traits increase — new species may form.
+
+Lamarck vs Darwin:
+Lamarck: Use and disuse of organs; acquired traits are inherited (WRONG). Example: giraffes stretched neck → offspring had longer necks.
+Darwin: Natural selection of variations that are already heritable (CORRECT). Variations arise randomly; favorable ones selected by environment.
+
+EVIDENCE FOR EVOLUTION:
+Fossils: preserved remains in rock layers. Older fossils at deeper layers. Show how life changed over time.
+Homologous organs: Same basic structure, same embryonic origin, DIFFERENT functions. Example: forelimbs of human (writing), whale (swimming), bat (flying), frog (jumping) — same bones (humerus, radius, ulna) but different uses. Indicates COMMON ANCESTRY.
+Analogous organs: Different structure/origin, SAME function. Example: wings of butterfly (chitin) and bird (bones) — both used for flying but completely different structures. Indicates CONVERGENT evolution (adaptation to similar environment).
+Embryology: Embryos of different vertebrates look similar at early stages — suggests common ancestor.
+
+TEXTBOOK Q&A:
+Q: State Mendel's Law of Segregation with example.
+A: The two alleles (factors) for a character separate during gamete formation. Each gamete carries only one allele.
+Example: In monohybrid cross Tt × Tt, the T and t alleles in each parent separate to form gametes T and t separately. When fertilisation occurs, F2 generation shows 1TT:2Tt:1tt ratio.
+
+Q: How is sex determined in humans? Who is responsible for sex of child?
+A: Human females have XX chromosomes, males have XY.
+Mother produces eggs all carrying X chromosome.
+Father produces sperm with either X or Y chromosome.
+If X-sperm fertilises egg → XX → Female child.
+If Y-sperm fertilises egg → XY → Male child.
+Therefore, FATHER determines the sex of the child.
+
+Q: What are homologous organs? What do they indicate? Give example.
+A: Homologous organs are those with similar basic structure, same embryonic origin but performing different functions.
+Example: forelimbs of human (grasping), whale (swimming), bat (flying), horse (running) — all have same bones (humerus, radius, ulna, carpals) but used differently.
+They indicate that these organisms have evolved from a COMMON ANCESTOR (divergent evolution).
+
+Q: Distinguish between inherited traits and acquired traits with examples.
+A: Inherited traits: traits passed from parents to offspring through genes/chromosomes. Present from birth.
+Examples: eye colour, blood group, height, colour of skin.
+Acquired traits: traits developed during an individual's lifetime due to environment or experience. Cannot be passed to offspring.
+Examples: muscles developed by exercise, scar from injury, language learned.`,
+
+/* ───────────────────────────────────────────────────
+   ENGLISH
+─────────────────────────────────────────────────── */
+english_1: `WHERE THE MIND IS WITHOUT FEAR — Rabindranath Tagore
+
+ABOUT THE POET:
+Rabindranath Tagore (1861-1941). Bengali poet, philosopher, playwright, musician.
+Nobel Prize for Literature 1913 — for "Gitanjali" (Song Offerings). First Asian to win Nobel Prize for Literature.
+Also wrote India's national anthem "Jana Gana Mana."
+Gitanjali: collection of 103 devotional poems, self-translated from Bengali. "Where the Mind..." = poem no. 35.
+
+ABOUT THE POEM:
+Written during British colonial rule as a PRAYER to God (addressed as "Father") for an ideal, truly free India.
+Not just politically free — free in mind, reason, spirit, and action.
+Form: Free verse (no fixed rhyme/metre). Mood: prayerful, hopeful, idealistic.
+Subjunctive mood throughout ("Where..." = wish/prayer, NOT a statement of fact. India was NOT free when he wrote it.)
+
+LINE-BY-LINE MEANING AND EXPLANATION:
+
+Line 1: "Where the mind is without fear and the head is held high"
+Meaning: Tagore prays for a nation where citizens are not afraid — not of rulers, not of society, not of speaking truth. "Head held high" = dignity, self-respect, and pride for every citizen.
+
+Line 2: "Where knowledge is free"
+Meaning: Education and knowledge must be free and accessible to ALL people — not restricted by caste, class, gender, or wealth. Universal education.
+
+Line 3-4: "Where the world has not been broken up into fragments by narrow domestic walls"
+Meaning: "Narrow domestic walls" = mental/social barriers of caste, religion, race, nationality, and superstition. Tagore prays for unity, brotherhood, and freedom from prejudice. Figure of speech: METAPHOR.
+
+Line 5: "Where words come out from the depth of truth"
+Meaning: People should speak with complete honesty — no lies, no hypocrisy, no flattery. Words should come from genuine conviction.
+
+Line 6: "Where tireless striving stretches its arms towards perfection"
+Meaning: A hardworking nation that constantly pursues excellence and improvement. Never satisfied with mediocrity. Figure of speech: PERSONIFICATION (striving stretches its arms).
+
+Line 7-8: "Where the clear stream of reason has not lost its way into the dreary desert sand of dead habit"
+Meaning: "Clear stream of reason" = rational, logical thinking. "Dreary desert sand of dead habit" = blind traditions, superstitions, outdated customs followed without thinking.
+Tagore wants people to use reason and not blindly follow old habits.
+Figures of speech: METAPHOR (stream of reason, desert of dead habit), ALLITERATION (dreary desert, dead habit).
+
+Line 9: "Where the mind is led forward by thee into ever-widening thought and action"
+Meaning: God leads minds towards progress, broad thinking, and positive action.
+
+Line 10 (Concluding prayer): "Into that heaven of freedom, my Father, let my country awake"
+Meaning: "Heaven of freedom" = the ideal India described in the poem. Tagore prays to God ("Father") to transform India into this vision of freedom. This is the climax and most important line.
+Figure of speech: METAPHOR ("heaven of freedom" = ideal nation), APOSTROPHE (direct address to God as "Father").
+
+CENTRAL IDEA:
+The poem is a heartfelt prayer to God to make India truly free — free in mind, free in thought, free in spirit. Tagore envisions an India of fearless, rational, honest, hardworking, and united people.
+
+TONE AND MOOD: Prayerful, hopeful, visionary, idealistic, patriotic.
+(NOT angry, NOT demanding — it is a prayer/wish.)
+
+ALL FIGURES OF SPEECH:
+1. Metaphor: "narrow domestic walls" (social barriers), "heaven of freedom" (ideal nation), "clear stream of reason" (rational thought), "dreary desert sand of dead habit" (blind customs/superstition).
+2. Personification: "tireless striving stretches its arms towards perfection," "clear stream of reason has not lost its way."
+3. Alliteration: "dreary desert," "dead habit."
+4. Apostrophe: "my Father" — direct address to God.
+5. Transferred epithet: "dreary desert" — dreariness is of the dead habits, not the desert.
+
+EXAM TIPS:
+- Always say this is a PRAYER (subjunctive mood) not a statement — important 1-mark point.
+- "Heaven of freedom" is the most important metaphor — write its explanation fully.
+- For figures of speech: always write (1) name of figure, (2) the exact line/phrase, (3) explanation.
+- Central idea in 3-4 sentences is a common 3-mark question.
+- Explain any TWO lines from the poem is a very common exam question.`,
+
+english_2: `THE THIEF'S STORY — Ruskin Bond
+
+AUTHOR: Ruskin Bond (born 1934). Famous Indian writer in English. Known for writing about nature, hill stations, simple Indian life. Set in Dehradun/Mussoorie area.
+
+CHARACTERS:
+Hari Singh: 15-year-old experienced thief. Narrator. Uses different names with different victims. Describes himself as "probably the most accomplished thief in all of India." Quick-witted, observant.
+Anil: Young man, early-to-mid 20s. A struggling writer ("Anil made money by fits and starts"). Very trusting, generous, absent-minded. Doesn't even count money. Teaches Hari without expecting anything.
+
+COMPLETE PLOT SUMMARY:
+→ Hari meets Anil at a wrestling match. Gives a charming smile. Asks for work.
+→ Anil hires him to cook. Hari cooks terrible food first time. Anil teaches him.
+→ Arrangement: Hari cooks, does shopping (makes small profit by overcharging). Anil pays Re 1 daily. TEACHES him to cook, read, write sentences.
+→ One night Hari finds Rs 600 (Anil's earnings from magazine article) under the mattress. Steals it.
+→ Runs to Dehradun railway station to catch Lucknow Express. Gets a ticket.
+→ Standing in rain on platform, thinking: "If I went away now I'd be running for the rest of my life."
+→ Thinks about what he would lose: chance to learn to read fully, write properly, add numbers — get a real job. Literacy = key to honest future.
+→ "A little learning, even, was a dangerous thing for a thief" — education was changing him.
+→ He returns. Puts money back under mattress. Goes to sleep.
+→ Next morning: Anil gives Hari Rs 50 (from new money he earned). Says he'll pay regularly now.
+→ Anil smiles "a smile that went with sadness" — he KNEW. But chose forgiveness over confrontation.
+
+KEY THEMES:
+1. Trust and redemption: Anil's unconditional trust is what reforms Hari — not punishment or law.
+2. Value of education/literacy: Education offers a way out of crime. "A little learning was a dangerous thing for a thief."
+3. Human goodness: Anil's generous spirit and silent forgiveness.
+4. Moral choice: Hari chooses future over immediate gain.
+5. Irony: Anil is "the most trusting person I had ever met" — trust is more powerful than locks.
+
+TEXTBOOK Q&A:
+Q: Why did Hari Singh return the stolen money?
+A: NOT from fear of being caught — Anil would never go to the police ("he knew I'd taken the money but I also knew he would not hand me to the police"). Hari returned the money because he realised: keeping Rs 600 meant remaining a petty thief forever. But with Anil's teaching he could learn to read fully, write, do arithmetic — get a decent job. The desire for honest life through education was stronger than greed. Education had already changed him.
+
+Q: What does the last scene tell us about Anil's character?
+A: Anil gives Hari Rs 50 with "a smile that went with sadness" — this subtle detail shows Anil KNEW Hari had taken and returned the money. Yet he chose to forgive silently, not confront him, and even promised to pay regularly — giving Hari another chance. This shows Anil's extraordinary generosity, wisdom, and trust in human goodness.
+
+Q: What is the significance of the title "The Thief's Story"?
+A: It is told from Hari Singh's (the thief's) perspective — first person narrator. But more importantly, by the end it is not just a thief's story but a story of moral transformation. The thief becomes someone who chooses honesty. The title is therefore slightly ironic — it promises a crime story but delivers a story of redemption.
+
+Q: What is the central theme/moral of the story?
+A: The central theme is redemption through education and human trust. Education (literacy) gives Hari a glimpse of a better, honest future. Anil's unconditional trust transforms him. The moral: Human goodness and the desire for education are more powerful than crime or greed.`,
+
+english_4: `ALL THE WORLD'S A STAGE — William Shakespeare
+
+SOURCE AND CONTEXT:
+From "As You Like It" — a comedy play by William Shakespeare (1599-1600).
+Act II, Scene VII. Spoken by Jaques (melancholy character, philosophically pessimistic).
+Type: Soliloquy — a long speech delivered by one character, often revealing inner thoughts.
+"All the world's a stage" is one of the most famous speeches in English literature.
+
+CENTRAL IDEA:
+The world is like a theatrical stage, and all human beings are merely actors playing different roles (ages) in the drama of life. Everyone goes through the same seven stages and ultimately returns to helplessness.
+
+LINE-BY-LINE EXPLANATION AND SEVEN AGES:
+Opening: "All the world's a stage, / And all the men and women merely players"
+Extended Metaphor — world = stage, people = actors. Life is a performance.
+"They have their exits and their entrances" — birth (entrance) and death (exit).
+"And one man in his time plays many parts, / His acts being seven ages" — 7 stages of life.
+
+AGE 1 — INFANT: "At first the infant, mewling and puking in the nurse's arms."
+Mewling = crying weakly. Puking = vomiting. Helpless, dependent on nurse.
+
+AGE 2 — SCHOOLBOY: "The whining schoolboy with his satchel / And shining morning face, creeping like snail / Unwillingly to school."
+Whining = complaining. "Shining morning face" = freshly washed, reluctant. Simile: "creeping like snail" = very slow, unwilling.
+
+AGE 3 — LOVER: "And then the lover, / Sighing like furnace, with a woeful ballad / Made to his mistress' eyebrow."
+Sighing like furnace = deeply lovesick (furnace gives hot air = sighs). Writes love poems about even the smallest details of his beloved.
+
+AGE 4 — SOLDIER: "Then a soldier / Full of strange oaths, and bearded like the pard (leopard), / Jealous in honour, sudden and quick in quarrel, / Seeking the bubble reputation / Even in the cannon's mouth."
+Strange oaths = unusual swear words. Bearded like a pard = rough beard like leopard. Jealous in honour = fiercely protective of reputation. "Bubble reputation" = fame is fragile like a bubble. Seeks glory even in battle (cannon's mouth).
+
+AGE 5 — JUSTICE (JUDGE): "In fair round belly with good capon lined, / With eyes severe and beard of formal cut, / Full of wise saws and modern instances."
+Round belly = well-fed. Eyes severe = stern look. Wise saws = proverbs, sayings. Full of wisdom and experiences.
+
+AGE 6 — PANTALOON (OLD MAN): "The sixth age shifts / Into the lean and slippered pantaloon, / With spectacles on nose and pouch on side, / His youthful hose, well saved, a world too wide / For his shrunk shank; and his big manly voice, / Turning again toward childish treble, pipes / And whistles in his sound."
+Lean and slippered = thin, wearing slippers (weak). Pouch = money bag. Hose = trousers (from youth now too wide for his shrunken legs). Voice becomes high-pitched again (treble).
+
+AGE 7 — SECOND CHILDISHNESS: "Last scene of all / That ends this strange eventful history, / Is second childishness and mere oblivion, / Sans teeth, sans eyes, sans taste, sans everything."
+Second childishness = returns to infant state, helpless. Oblivion = forgetfulness. "Sans" = without (French). Without teeth, without sight, without taste, without everything. Complete helplessness.
+
+FIGURES OF SPEECH:
+Extended Metaphor: World = stage, people = actors (main device throughout).
+Simile: "creeping like a snail," "sighing like a furnace," "bearded like the pard."
+Alliteration: "mewling and puking," "shrunk shank."
+Repetition: "sans" × 4 (emphasises total loss in old age).`,
+
+/* ───────────────────────────────────────────────────
+   MATHEMATICS
+─────────────────────────────────────────────────── */
+maths_alg_1: `ARITHMETIC PROGRESSION — Chapter 1, Algebra (Part 1)
+
+DEFINITION: A sequence in which each term after the first is obtained by adding a fixed number called common difference (d) to the preceding term.
+General term: aₙ = a + (n-1)d
+Sum formula: Sₙ = n/2 × [2a + (n-1)d] = n/2 × [first term + last term]
+If Sₙ is known: aₙ = Sₙ − Sₙ₋₁
+Common difference: d = a₂−a₁ = a₃−a₂ (must be constant)
+
+CHOOSING VARIABLES FOR PROBLEMS:
+Three terms in AP: (a−d), a, (a+d) — sum = 3a (simple!)
+Four terms in AP: (a−3d), (a−d), (a+d), (a+3d) — sum = 4a
+Five terms: (a−2d), (a−d), a, (a+d), (a+2d) — sum = 5a
+
+TEXTBOOK PROBLEMS (fully solved):
+P1: Find the 20th term of AP: 7, 11, 15, 19...
+Given: a=7, d=11-7=4, n=20. Find: a₂₀.
+aₙ = a+(n-1)d = 7+(20-1)×4 = 7+76 = 83.
+
+P2: Find the sum of first 25 terms of AP: 5, 8, 11...
+Given: a=5, d=3, n=25. Find: S₂₅.
+S₂₅ = 25/2[2×5+(25-1)×3] = 25/2[10+72] = 25/2×82 = 25×41 = 1025.
+
+P3: How many terms of AP 9, 17, 25... must be taken to get sum 636?
+Given: a=9, d=8, Sₙ=636. Find: n.
+636 = n/2[2×9+(n-1)×8] = n/2[18+8n-8] = n/2[10+8n] = 5n+4n²
+4n²+5n-636 = 0. Using formula: n = (-5±√(25+10176))/8 = (-5±√10201)/8 = (-5±101)/8.
+n = 96/8 = 12 (taking positive value). Answer: 12 terms.
+
+P4: Three numbers are in AP. Their sum is 21, product is 315. Find the numbers.
+Let the numbers be (a-d), a, (a+d).
+Sum: 3a = 21 → a = 7.
+Product: (7-d)(7)(7+d) = 315 → 7(49-d²) = 315 → 49-d² = 45 → d² = 4 → d = ±2.
+Numbers: 5, 7, 9 (when d=2) or 9, 7, 5 (when d=-2). Both are same set.`,
+
+maths_alg_2: `QUADRATIC EQUATIONS — Chapter 2, Algebra (Part 1)
+
+STANDARD FORM: ax² + bx + c = 0, where a ≠ 0. Degree = 2.
+METHODS OF SOLUTION:
+1. Factorisation: Find two numbers whose sum = b and product = ac.
+2. Completing the square: Add (b/2a)² to both sides.
+3. Quadratic formula: x = [−b ± √(b²−4ac)] / 2a
+
+DISCRIMINANT: Δ = b²−4ac
+Δ > 0: two distinct real roots. Δ = 0: two equal roots (repeated). Δ < 0: no real roots.
+
+RELATIONSHIP BETWEEN ROOTS (α and β):
+Sum of roots: α + β = −b/a
+Product of roots: α × β = c/a
+Forming equation from roots: x² − (sum)x + (product) = 0
+
+TEXTBOOK PROBLEMS:
+P1: Solve 2x²−5x+3=0 by factorisation.
+Product = 2×3=6. Sum = -5. Factors: -2 and -3.
+2x²-2x-3x+3=0 → 2x(x-1)-3(x-1)=0 → (2x-3)(x-1)=0
+x = 3/2 or x = 1.
+
+P2: Solve x²+4x-5=0 by quadratic formula.
+a=1, b=4, c=-5. Δ = 16+20 = 36.
+x = (-4±6)/2. x = 1 or x = -5.
+
+P3: If one root of x²-3x+k=0 is twice the other, find k.
+Let roots be α and 2α.
+Sum: α+2α = 3 → 3α = 3 → α = 1.
+Product: α×2α = k → 2α² = k → 2×1 = k → k = 2.
+
+P4 (Word problem): A train travels 480 km. Had speed been 8 km/h more, time taken would be 2 hours less. Find original speed.
+Let original speed = x km/h.
+Time at x km/h: 480/x hours. Time at (x+8) km/h: 480/(x+8) hours.
+480/x − 480/(x+8) = 2
+480(x+8−x) = 2x(x+8)
+480×8 = 2x²+16x
+3840 = 2x²+16x → x²+8x−1920=0
+(x+48)(x−40)=0 → x=40 (reject negative).
+Original speed = 40 km/h.`,
+
+maths_alg_4: `PROBABILITY — Chapter 4, Algebra (Part 1)
+
+DEFINITION: P(E) = Number of favourable outcomes / Total number of equally likely outcomes.
+Range: 0 ≤ P(E) ≤ 1. Certain event: P=1. Impossible event: P=0.
+Complementary events: P(E) + P(not E) = 1.
+
+SAMPLE SPACES:
+Single coin: {H, T}. n(S)=2.
+Two coins: {HH, HT, TH, TT}. n(S)=4.
+Three coins: {HHH, HHT, HTH, THH, HTT, THT, TTH, TTT}. n(S)=8.
+Single die: {1,2,3,4,5,6}. n(S)=6.
+Two dice: n(S)=36 (all ordered pairs).
+Pack of cards: 52 cards. 4 suits×13: ♠Spades (black,13), ♣Clubs (black,13), ♥Hearts (red,13), ♦Diamonds (red,13). Face cards=12 (4J+4Q+4K). Aces=4. Red cards=26, Black=26.
+
+PROBLEMS:
+P1: A die is thrown once. Find P(even number), P(number>4), P(prime number).
+Total outcomes=6. Even={2,4,6}. P(even)=3/6=1/2.
+>4={5,6}. P(>4)=2/6=1/3. Primes={2,3,5}. P(prime)=3/6=1/2.
+
+P2: One card drawn from 52 cards. P(king), P(red queen), P(face card), P(not an ace).
+P(king)=4/52=1/13. P(red queen)=2/52=1/26. P(face card)=12/52=3/13. P(not ace)=48/52=12/13.
+
+P3: Bag contains 3 red, 5 blue, 2 green balls. One ball drawn. Find P(red), P(not green), P(blue).
+Total=10. P(red)=3/10. P(not green)=8/10=4/5. P(blue)=5/10=1/2.`,
+
+/* ───────────────────────────────────────────────────
+   HISTORY
+─────────────────────────────────────────────────── */
+history_1: `HISTORIOGRAPHY – DEVELOPMENT IN THE WEST — Chapter 1, History
+
+DEFINITION:
+Historiography: The study of the methods, principles, and history of historical writing itself. It answers: How has history been written? What were the approaches? How did they change over time?
+
+DEVELOPMENT OF WESTERN HISTORIOGRAPHY:
+
+ANCIENT PERIOD:
+Herodotus (484-425 BC, Greek): Called "Father of History." Wrote "Historiai/Histories" about the Persian Wars. First to investigate, collect evidence, and record historical events in a systematic manner. Distinguished between myth and verifiable events.
+Thucydides (460-400 BC, Greek): Wrote "History of the Peloponnesian War." More scientific than Herodotus. Focused on cause-effect analysis, excluded supernatural, relied on eyewitness accounts, sought objectivity.
+Roman historians: Livy (Roman history, patriotic), Tacitus (critical, analytical).
+
+MEDIEVAL PERIOD (5th-15th century):
+Theological/religious approach. Events seen as part of God's divine plan (Providence).
+History written mainly by monks in form of chronicles (annals). Focused on religious history. Little distinction between myth and fact.
+
+RENAISSANCE (14th-16th century):
+Humanist approach — humans and their actions placed at centre (not God).
+Historians began using original documents, inscriptions, and monuments.
+Critical examination of sources introduced (e.g., Lorenzo Valla proved "Donation of Constantine" was a forgery).
+
+MODERN SCIENTIFIC HISTORIOGRAPHY (19th century onwards):
+Leopold von Ranke (1795-1886, Germany): "Father of Scientific History." Famous quote: "wie es eigentlich gewesen" (as it actually happened). Stressed: primary sources, archival research, objectivity, critical analysis of documents. Established history as a professional academic discipline.
+
+SCHOOLS OF HISTORIOGRAPHY:
+Positivism: Apply scientific methods to history. History can discover laws like natural sciences.
+Annales School (France — Marc Bloch, Lucien Febvre, Fernand Braudel): Focus on long-term social, economic, geographical forces rather than political events. Introduced "total history." Very influential in 20th century.
+Marxist historiography (Karl Marx, Friedrich Engels and followers): Economic factors and class struggle are the driving forces of history. Means of production determine social structures. History = history of class conflicts.
+Post-modernism (late 20th century): No single objective truth in history. History depends on who writes it. Multiple narratives exist. Questions the possibility of objectivity.
+Social history, Gender history, Environmental history: Newer approaches focusing on ordinary people, women, and environment rather than just kings and wars.
+
+TEXTBOOK Q&A:
+Q: Who is called "Father of History"? Why?
+A: Herodotus (5th century BC, Greek). He was the first to systematically investigate, collect evidence, and record historical events. His work "Histories" described the Persian Wars with attempts at accuracy. He tried to distinguish between myth and actual events.
+
+Q: What is the contribution of the Annales School to historiography?
+A: The Annales School (France — Bloch, Febvre, Braudel) shifted historical focus from political events and great men to long-term social, economic, and geographical forces. It introduced "total history" — studying all aspects of human life. It also made history interdisciplinary (combining with geography, economics, sociology).`,
+
+/* ───────────────────────────────────────────────────
+   CIVICS
+─────────────────────────────────────────────────── */
+civics_1: `WORKING OF THE CONSTITUTION — Chapter 1, Political Science
+
+CONSTITUTION OF INDIA:
+Drafting Committee Chairman: Dr. B.R. Ambedkar ("Father of the Indian Constitution").
+Adopted: November 26, 1949 (celebrated as Constitution Day / Samvidhan Diwas).
+Enforced (came into effect): January 26, 1950 (Republic Day).
+
+THE PREAMBLE:
+"WE, THE PEOPLE OF INDIA, having solemnly resolved to constitute India into a SOVEREIGN, SOCIALIST, SECULAR, DEMOCRATIC, REPUBLIC and to secure to all its citizens:
+JUSTICE, social, economic and political;
+LIBERTY of thought, expression, belief, faith and worship;
+EQUALITY of status and of opportunity;
+and to promote among them all FRATERNITY assuring the dignity of the individual and the unity and integrity of the Nation..."
+Keywords: Sovereign (independent), Socialist (equal distribution), Secular (no state religion), Democratic (elected government), Republic (no hereditary head of state).
+
+FUNDAMENTAL RIGHTS (Part III, Articles 12-35):
+1. Right to Equality (Art 14-18): equality before law, no discrimination on basis of religion/race/caste/sex, untouchability abolished (Art 17), no titles except military/academic.
+2. Right to Freedom (Art 19-22): freedom of speech and expression, assembly, association, movement, residence, profession. Art 21: Right to life and personal liberty (most important).
+3. Right against Exploitation (Art 23-24): prohibition of forced labour/human trafficking; no child labour in hazardous work for those under 14 years.
+4. Right to Freedom of Religion (Art 25-28): freedom to profess, practise, propagate religion.
+5. Cultural and Educational Rights (Art 29-30): minorities can preserve language, culture; set up educational institutions.
+6. Right to Constitutional Remedies (Art 32): Right to move Supreme Court to enforce Fundamental Rights. Dr. Ambedkar called this the "heart and soul of the Constitution."
+WRITS (Art 32): Habeas corpus (produce the body — against illegal detention), Mandamus (command a public body to do its duty), Prohibition (stop lower court from exceeding jurisdiction), Certiorari (quash order of lower court), Quo warranto (challenge person's right to hold public office).
+
+DIRECTIVE PRINCIPLES OF STATE POLICY (Part IV):
+Non-justiciable — cannot be enforced in court, but GUIDE the State in governance.
+Examples: equal pay for equal work, free legal aid, protection of environment, uniform civil code.
+
+FUNDAMENTAL DUTIES (Art 51A): Added by 42nd Amendment (1976). 11 duties of citizens.
+Examples: respect Constitution, national anthem, flag; protect sovereignty; promote harmony; protect environment.
+
+THREE ORGANS OF GOVERNMENT:
+Legislature: Makes laws (Parliament at centre, State Assemblies at state level).
+Executive: Implements laws (President, Prime Minister, Cabinet, Bureaucracy).
+Judiciary: Interprets laws and settles disputes (Supreme Court, High Courts, Lower courts). Independent judiciary.
+Separation of powers and checks and balances prevent any one organ from becoming too powerful.
+
+TEXTBOOK Q&A:
+Q: When was the Indian Constitution adopted and enforced? Who chaired the Drafting Committee?
+A: Adopted: November 26, 1949 (Constitution Day). Enforced: January 26, 1950 (Republic Day). Dr. B.R. Ambedkar was Chairman of the Drafting Committee.
+
+Q: Why did Dr. Ambedkar call Article 32 the "heart and soul of the Constitution"?
+A: Article 32 gives citizens the right to directly approach the Supreme Court for enforcement of their Fundamental Rights through writs. Without this guarantee, all other Fundamental Rights would be meaningless — there would be no mechanism to enforce them. Therefore, Dr. Ambedkar called it the "heart and soul" of the Constitution — it is the guardian of all other rights.`,
+
+/* ───────────────────────────────────────────────────
+   GEOGRAPHY
+─────────────────────────────────────────────────── */
+geography_1: `PHYSICAL DIVISIONS OF INDIA — Chapter 1, Geography
+
+BASIC FACTS ABOUT INDIA:
+Area: 3.28 million km² — 7th largest country in world.
+Population: 1.4 billion+ — 2nd most populous country.
+Latitudinal extent: 8°4'N (Kanyakumari/Indira Point) to 37°6'N (Kashmir). Spread = 29°.
+Longitudinal extent: 68°7'E (Rann of Kutch, Gujarat) to 97°25'E (Arunachal Pradesh). Spread = 30°.
+Standard Meridian: 82°30'E (passes through Prayagraj/Allahabad). IST = UTC + 5:30 hours.
+North-South extent: 3214 km. East-West extent: 2933 km.
+Coastline: 7516 km (mainland + islands). Tropic of Cancer (23½°N) passes through middle.
+
+INDIA'S NEIGHBOURING COUNTRIES:
+NW: Pakistan, Afghanistan. N: China, Nepal, Bhutan. NE: Bangladesh, Myanmar. SE (across water): Sri Lanka (Palk Strait separates India and Sri Lanka).
+
+SIX PHYSICAL DIVISIONS OF INDIA:
+1. THE HIMALAYAN MOUNTAINS (North): Young fold mountains. 2400 km long. Barrier against cold winds from Central Asia. Source of perennial rivers. Stores water as glaciers. Young, still rising.
+2. THE NORTHERN PLAINS (Indus-Ganga-Brahmaputra plains): Formed by alluvial deposits of three great river systems. 3200 km long, 150-300 km wide. Most fertile land. Most densely populated. Agricultural heartland.
+3. THE PENINSULAR PLATEAU (Deccan Plateau): Ancient pre-Cambrian Gondwana land. Average elevation 600-900m. Rich in minerals. Ancient, geologically stable (not rising or sinking). Contains Deccan Trap.
+4. THE COASTAL PLAINS: East coast (wider, fertile deltas) and West coast (narrow, rocky Konkan). Fisheries, ports, trade.
+5. THE ISLANDS: Andaman & Nicobar (Bay of Bengal) and Lakshadweep (Arabian Sea).
+6. THE THAR DESERT: Rajasthan, Rann of Kutch. Arid, sparse vegetation, extreme temperatures.
+
+TEXTBOOK Q&A:
+Q: Give any four basic geographical facts about India.
+A: (1) Area: 3.28 million km² — 7th largest. (2) Population: 1.4 billion+ — 2nd most populous. (3) Latitudinal extent: 8°4'N to 37°6'N. (4) Longitudinal extent: 68°7'E to 97°25'E. (5) Coastline: 7516 km. (6) Standard Meridian: 82°30'E (IST = UTC+5:30).
+
+Q: Name the six physical divisions of India.
+A: (1) Himalayan Mountains. (2) Northern Plains (Indo-Gangetic Plain). (3) Peninsular Plateau (Deccan Plateau). (4) Coastal Plains. (5) Islands (A&N + Lakshadweep). (6) Thar Desert.`,
+
+/* ───────────────────────────────────────────────────
+   MARATHI
+─────────────────────────────────────────────────── */
+marathi_1: `स्वप्नवत — आनंद यादव
+लेखक: आनंद यादव. ग्रामीण जीवनाचे चित्रण करणारे प्रसिद्ध मराठी लेखक.
+पाठाचा प्रकार: आत्मकथनात्मक कथा.
+मुख्य विषय: एका शेतकरी मुलाचे शिक्षणाचे स्वप्न. ग्रामीण जीवन, गरिबी, शहरातील संघर्ष.
+मुख्य मुद्दे: शिक्षणाचे महत्त्व. स्वप्न आणि वास्तव यातील संघर्ष. कुटुंबाची अपेक्षा. शहरी जीवनाचा अनुभव.
+संदेश: गरिबी असूनही स्वप्न पाहणे आणि त्यासाठी धडपडणे महत्त्वाचे. शिक्षण हाच खरा मार्ग.
+परीक्षेसाठी: लेखकाचे नाव, पाठाचा विषय, नायकाचे वर्णन, संदेश हे विचारले जाते.`,
+
+marathi_2: `संतवाणी — वारकरी संत साहित्य
+प्रमुख संत: संत ज्ञानेश्वर, संत तुकाराम, संत नामदेव, संत एकनाथ.
+संत ज्ञानेश्वर: ज्ञानेश्वरी (भगवद्गीतेवरील मराठी टीका). पसायदान — सर्व जगाच्या कल्याणाची प्रार्थना.
+संत तुकाराम: अभंग — "जे का रंजले गांजले त्यासी म्हणे जो आपुले / तोची साधु ओळखावा देव तेथेची जाणावा." दुर्बल, पीडित लोकांची मदत हेच देवाचे दर्शन.
+वारकरी संप्रदाय: पंढरपूरच्या विठ्ठलाची (विठोबाची) भक्ती. आषाढी-कार्तिकी एकादशीला पायी वारी. भक्ती, समता, बंधुता ही मूल्ये.
+अभंग: वारकरी भक्तिकाव्याचा प्रकार. चार चरण. अ-भंग = जे तुटत नाही.`,
+
+/* ───────────────────────────────────────────────────
+   HINDI
+─────────────────────────────────────────────────── */
+hindi_1: `सूरदास — भक्तिकाल (लोकभारती)
+परिचय: सूरदास (1478-1583 ई.). अंधे होने पर भी कृष्ण की कल्पना। वल्लभाचार्य के शिष्य। अष्टछाप के कवि (8 कवियों का समूह)।
+प्रमुख रचना: सूरसागर (सवा लाख पद)। भाषा: ब्रजभाषा। रस: वात्सल्य रस में सर्वश्रेष्ठ।
+काव्य विशेषताएं: (1) कृष्ण की बाललीला — माखन चोरी, यशोदा का प्रेम। (2) भ्रमरगीत — गोपियों का उद्धव से तर्क-वितर्क। (3) विरह वर्णन — राधा-कृष्ण विछोह। (4) भक्ति, प्रेम, वात्सल्य के सुंदर चित्र।`,
+
+hindi_3: `कबीर के दोहे — भक्तिकाल निर्गुण धारा
+परिचय: कबीरदास (1398-1518 ई., अनुमानित)। जाति से जुलाहे। रामानंद के शिष्य। भाषा: सधुक्कड़ी (अवधी+ब्रज+भोजपुरी का मिश्रण)। रचना: बीजक (साखी, सबद, रमैनी)।
+महत्वपूर्ण दोहे और अर्थ:
+"पोथी पढ़ि पढ़ि जग मुआ, पंडित भया न कोय। ढाई आखर प्रेम का, पढ़े सो पंडित होय।"
+अर्थ: केवल किताबें पढ़ने से ज्ञान नहीं मिलता। जो प्रेम को समझता है वही सच्चा ज्ञानी है।
+"दुख में सुमिरन सब करें, सुख में करें न कोय। जो सुख में सुमिरन करें, तो दुख काहे होय।"
+अर्थ: दुख में सब ईश्वर को याद करते हैं, सुख में नहीं। यदि सुख में भी याद करें तो दुख ही न आए।`,
+
+hindi_5: `गोदान (अंश) — मुंशी प्रेमचंद
+लेखक: मुंशी प्रेमचंद (1880-1936)। "उपन्यास सम्राट"। "कलम का सिपाही"। हिंदी और उर्दू दोनों में लिखा।
+उपन्यास: गोदान (1936) — प्रेमचंद का अंतिम और सर्वश्रेष्ठ उपन्यास।
+पात्र: होरी (गरीब किसान, मुख्य पात्र), धनिया (पत्नी, साहसी), गोबर (बेटा), झुनिया, रायसाहब, मेहता, मालती।
+मुख्य कथावस्तु: होरी की एकमात्र इच्छा है — एक गाय खरीदना (गोदान = गाय का दान)। गाय = भारतीय किसान का सम्मान और पवित्रता का प्रतीक। लेकिन कर्ज, जमींदार, महाजन, और सामाजिक दबाव होरी को तोड़ देते हैं। मृत्यु के समय भी गाय नहीं खरीद पाता — पत्नी धनिया कुछ पैसे देकर "गोदान" पूरा करती है।
+मुख्य विषय: ग्रामीण भारत की दुर्दशा, किसान का शोषण, कर्ज का दुश्चक्र, सामाजिक असमानता।`
+};
+
+/* ══════════════════════════════════════════════════════
+   buildSystemPrompt — uses KB for selected chapters
+══════════════════════════════════════════════════════ */
+function buildSystemPrompt() {
+  var subj = CURRICULUM[state.subject];
+  var subPart = state.subSubject ? ' (' + state.subSubject + ')' : '';
+  var subjKey = state.subject;
+
+  function getKB(key, subKey, n) {
+    var s = KB[key];
+    if (!s) return '';
+    if (key === 'maths' && subKey) return (s[subKey] && s[subKey][n]) ? s[subKey][n] : '';
+    return s[n] || '';
+  }
+
+  var chList = state.selectedChapters.map(function(c){ return '  Ch.' + c.n + ': ' + c.t; }).join('\n');
+  var kbContent = state.selectedChapters.map(function(ch) {
+    var content = getKB(subjKey, state.subSubject, ch.n);
+    return '\n=== Ch.' + ch.n + ': ' + ch.t + ' ===\n' + (content || 'Use your Maharashtra Board Balbharati Std 10 textbook knowledge for this chapter.');
+  }).join('\n');
+
+  return 'You are StudyMate, an expert Maharashtra State Board (SSC) Standard 10 AI tutor.\n\n' +
+    'SUBJECT: ' + subj.label + subPart + '\n' +
+    'BOARD: Maharashtra SSC Balbharati Standard 10\n\n' +
+    'SELECTED CHAPTERS:\n' + chList + '\n\n' +
+    '=== TEXTBOOK CONTENT — READ THIS BEFORE ANSWERING ===\n' +
+    kbContent + '\n\n' +
+    '=== HOW TO ANSWER ===\n' +
+    'CRITICAL: Your answers MUST come directly from the textbook content above. Never give generic answers.\n' +
+    'When a student asks any question, FIRST find the answer in the textbook content above, THEN reply.\n' +
+    'If the student asks for textbook questions or Q&A, copy EXACTLY from the Q&A sections above.\n' +
+    'If the student asks to explain a chapter, use the content above point by point.\n\n' +
+    'MARKS FORMAT:\n' +
+    '1 mark: One sentence with exact textbook definition.\n' +
+    '2 marks: Definition + example, or 2 key points from textbook.\n' +
+    '3 marks: 3 detailed points with explanation from textbook.\n' +
+    '5 marks: Heading + definition + detailed explanation + examples/equations + conclusion.\n\n' +
+    'SUBJECT RULES:\n' +
+    'Science: definition then balanced equation then numericals as GIVEN/FIND/FORMULA/SOLUTION/ANSWER with units.\n' +
+    'Maths: write FORMULA first, then substitute values, show every step, answer with units.\n' +
+    'English: figures of speech = NAME + EXACT LINE FROM POEM + EXPLANATION. Give stanza meanings line by line.\n' +
+    'History/Civics: exact dates, names, causes, effects.\n' +
+    'Geography: heights, coordinates, comparisons.\n\n' +
+    'End EVERY answer with: Exam Tip: [specific tip for Maharashtra Board exam]\n' +
+    'Use **bold** for key terms. Use bullet points and numbered lists.\n' +
+    'Only answer about selected chapters. Be warm and encouraging.';
+}
+
+function openTutorPage(){
+  const subj=CURRICULUM[state.subject];
+  tutorSubject.textContent=subj.label+(state.subSubject?' - '+state.subSubject:'');
+  const chNames=state.selectedChapters.map(c=>'Ch.'+c.n).join(', ');
+  tutorChapters.textContent=state.selectedChapters.length+' chapter'+(state.selectedChapters.length>1?'s':'')+' selected - '+chNames;
+  contextStrip.innerHTML='';
+  state.selectedChapters.forEach(ch=>{const p=document.createElement('div');p.className='ctx-pill';p.textContent='Ch.'+ch.n+': '+ch.t;contextStrip.appendChild(p);});
+  document.getElementById('page-setup').classList.add('hidden');
+  document.getElementById('page-tutor').classList.remove('hidden');
+  messagesEl.innerHTML='';state.messages=[];state.isLoading=false;
+  sendBtn.disabled=false;userInput.disabled=false;userInput.value='';
+  renderWelcome();
+}
+
+function renderWelcome(){
+  const subj=CURRICULUM[state.subject];
+  const ch=state.selectedChapters[0];
+  const card=document.createElement('div');card.className='welcome-card';
+  const starters=['Summarize Chapter '+ch.n+': '+ch.t,'What are the textbook questions of '+ch.t+'?','Explain key concepts of '+ch.t,'Give me 5 exam questions from '+ch.t,'Important topics for Maharashtra Board exam in '+ch.t];
+  card.innerHTML='<h3>Ready to study '+subj.label+'! \u2726</h3><p>I know your selected chapters inside out - textbook questions, model answers, formulas, and exam tips. Ask me anything!</p><div class="starter-chips">'+starters.map(s=>'<button class="starter-chip" data-q="'+escHtml(s)+'">'+escHtml(s)+'</button>').join('')+'</div>';
+  card.querySelectorAll('.starter-chip').forEach(btn=>btn.addEventListener('click',()=>{userInput.value=btn.dataset.q;resizeInput();send();}));
+  messagesEl.appendChild(card);
+}
+
+function escHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+backBtn.addEventListener('click',()=>{
+  const bd=document.createElement('div');bd.className='dialog-bd';
+  bd.innerHTML='<div class="dialog-box"><h3>Change Subject?</h3><p>You will go back to the selection screen.</p><div class="dialog-btns"><button class="btn btn-ghost" id="_no">Stay</button><button class="btn btn-primary" id="_yes">Go Back</button></div></div>';
+  document.body.appendChild(bd);
+  bd.querySelector('#_no').addEventListener('click',()=>bd.remove());
+  bd.querySelector('#_yes').addEventListener('click',()=>{bd.remove();clearSession();state.messages=[];state.selectedChapters=[];activeSubKey=null;document.querySelectorAll('.subj-pill').forEach(p=>p.classList.remove('selected'));chapterSection.style.display='none';saveBtn.disabled=true;document.getElementById('page-tutor').classList.add('hidden');document.getElementById('page-setup').classList.remove('hidden');});
+  bd.addEventListener('click',e=>{if(e.target===bd)bd.remove();});
+});
+
+userInput.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();}});
+userInput.addEventListener('input',resizeInput);
+sendBtn.addEventListener('click',()=>send());
+function resizeInput(){userInput.style.height='auto';userInput.style.height=userInput.scrollHeight+'px';}
+
+async function send(){
+  const text=userInput.value.trim();
+  if(!text)return;
+  if(state.isLoading){state.isLoading=false;sendBtn.disabled=false;return;}
+  const ts=Date.now();
+  userInput.value='';resizeInput();
+  const wc=messagesEl.querySelector('.welcome-card');if(wc)wc.remove();
+  state.messages.push({role:'user',content:text,ts});
+  addBubble('user',text,ts,true);
+  const typing=showTyping();
+  state.isLoading=true;sendBtn.disabled=true;
+  try{
+    const apiMsgs=[{role:'system',content:buildSystemPrompt()},...state.messages.map(m=>({role:m.role==='assistant'?'assistant':'user',content:m.content}))];
+    const reply=await groqChat(apiMsgs);
+    if(!reply)throw new Error('No reply received.');
+    typing.remove();
+    const ats=Date.now();
+    state.messages.push({role:'assistant',content:reply,ts:ats});
+    addBubble('assistant',reply,ats,true);
+  }catch(err){
+    typing.remove();
+    console.error(err);
+    toast('\u26A0\uFE0F '+(err?.message||String(err)),'error',7000);
+  }finally{
+    state.isLoading=false;sendBtn.disabled=false;userInput.disabled=false;userInput.focus();
+  }
+}
+
+function addBubble(role,content,ts,animate){
+  const isAI=role==='assistant';
+  const time=new Date(ts).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+  const wrap=document.createElement('div');wrap.className='message '+(isAI?'ai':'user')+(animate?' msg-appear':'');
+  const av=document.createElement('div');av.className='avatar '+(isAI?'avatar-ai':'avatar-user');
+  av.innerHTML=isAI?'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5Z"/></svg>':'D';
+  const bub=document.createElement('div');bub.className='bubble '+(isAI?'bubble-ai':'bubble-user');
+  const timeEl=document.createElement('span');timeEl.className='msg-time';timeEl.textContent=time;
+  if(!isAI){bub.innerHTML='<p>'+escHtml(content).replace(/\n/g,'<br>')+'</p>';bub.appendChild(timeEl);}
+  else{
+    const actions=document.createElement('div');actions.className='bubble-actions';
+    const copyBtn=document.createElement('button');copyBtn.className='bub-act';
+    copyBtn.innerHTML='<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy';
+    copyBtn.addEventListener('click',()=>{navigator.clipboard.writeText(content).then(()=>{copyBtn.innerHTML='<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg> Copied!';setTimeout(()=>{copyBtn.innerHTML='<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy';},2e3);});});
+    actions.appendChild(copyBtn);
+    if(animate){
+      const words=content.split(' ');let i=0;
+      const cur=document.createElement('span');cur.style.cssText='display:inline-block;width:2px;height:.85em;background:var(--gold);margin-left:1px;vertical-align:middle;border-radius:1px;animation:blink .65s ease-in-out infinite';
+      const tn=document.createElement('span');
+      bub.appendChild(tn);bub.appendChild(cur);bub.appendChild(actions);
+      const type=()=>{if(i<words.length){tn.textContent+=(i===0?'':' ')+words[i++];setTimeout(type,15+Math.random()*10);}else{cur.remove();bub.innerHTML=MD.parse(content);bub.appendChild(timeEl);bub.appendChild(actions);}};
+      type();
+    }else{bub.innerHTML=MD.parse(content);bub.appendChild(timeEl);bub.appendChild(actions);}
+  }
+  wrap.appendChild(av);wrap.appendChild(bub);messagesEl.appendChild(wrap);
+  if(isAI)requestAnimationFrame(()=>wrap.scrollIntoView({behavior:'smooth',block:'start'}));
+  else requestAnimationFrame(()=>messagesEl.scrollTo({top:messagesEl.scrollHeight,behavior:'smooth'}));
+}
+
+function showTyping(){
+  const el=document.createElement('div');el.className='typing-indicator';
+  el.innerHTML='<div class="avatar avatar-ai"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5Z"/></svg></div><div class="typing-bubble"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+  messagesEl.appendChild(el);
+  requestAnimationFrame(()=>messagesEl.scrollTo({top:messagesEl.scrollHeight,behavior:'smooth'}));
+  return el;
+}
+
+let micActive=false,recognition=null;
+micBtn.addEventListener('click',()=>{
+  if(micActive){recognition?.stop();return;}
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){toast('Voice needs Chrome.','error');return;}
+  recognition=new SR();recognition.lang='en-IN';recognition.continuous=false;recognition.interimResults=true;
+  recognition.onstart=()=>{micActive=true;micBtn.style.color='var(--rose)';};
+  recognition.onresult=e=>{let t='';for(let i=e.resultIndex;i<e.results.length;i++)t+=e.results[i][0].transcript;userInput.value=t;resizeInput();};
+  recognition.onerror=()=>micOff();recognition.onend=micOff;recognition.start();
+});
+function micOff(){micActive=false;micBtn.style.color='';}
+
+/* Session restore is handled by _goApp() after Google auth */
+</script>
+</body>
+</html>
