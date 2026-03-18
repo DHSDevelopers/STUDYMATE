@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
 <title>StudyMate — Maharashtra SSC 10th AI Tutor</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -27,7 +27,7 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{font-family:var(--font-b);background:var(--void);color:var(--text-1);-webkit-font-smoothing:antialiased;overflow:hidden}
+body{font-family:var(--font-b);background:var(--void);color:var(--text-1);-webkit-font-smoothing:antialiased;overflow:hidden;-webkit-text-size-adjust:100%}
 .bg-wrap{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
 .bg-mesh{position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 10% 5%,rgba(124,92,252,0.22) 0%,transparent 60%),radial-gradient(ellipse 50% 45% at 90% 90%,rgba(245,200,66,0.14) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 55% 45%,rgba(192,132,252,0.08) 0%,transparent 60%),var(--deep)}
 .star{position:absolute;border-radius:50%;background:white;animation:twinkle ease-in-out infinite}
@@ -85,7 +85,7 @@ body{font-family:var(--font-b);background:var(--void);color:var(--text-1);-webki
 .sel-all-btn{font-size:11.5px;font-weight:600;color:var(--violet2);background:none;border:none;cursor:pointer;padding:3px 0;transition:opacity .15s}
 .sel-all-btn:hover{opacity:.75}
 .selected-count{font-size:11px;color:var(--text-3)}
-.save-btn{width:100%;padding:15px;border-radius:var(--r-lg);border:none;background:var(--grad-hero);color:white;font-family:var(--font-b);font-size:15px;font-weight:700;cursor:pointer;margin-top:24px;transition:all .2s var(--spring);box-shadow:0 8px 28px rgba(124,92,252,0.35);position:relative;overflow:hidden}
+.save-btn{width:100%;padding:15px;border-radius:var(--r-lg);border:none;background:var(--grad-hero);color:white;font-family:var(--font-b);font-size:15px;font-weight:700;cursor:pointer;margin-top:24px;transition:all .2s var(--spring);box-shadow:0 8px 28px rgba(124,92,252,0.35);position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .save-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.12),transparent);opacity:0;transition:opacity .2s}
 .save-btn:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(124,92,252,0.45)}
 .save-btn:hover::before{opacity:1}
@@ -156,7 +156,7 @@ body{font-family:var(--font-b);background:var(--void);color:var(--text-1);-webki
 .act-btn:hover{color:var(--gold);background:rgba(245,200,66,0.08)}
 #userInput{flex:1;background:transparent;border:none;outline:none;resize:none;color:var(--text-1);font-family:var(--font-b);font-size:14px;line-height:1.6;max-height:150px;overflow-y:auto;caret-color:var(--gold);padding:3px 0 3px 8px}
 #userInput::placeholder{color:var(--text-3)}
-.send-btn{width:38px;height:38px;border-radius:11px;border:none;background:var(--grad-gold);color:#1a0f00;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s var(--spring);box-shadow:0 4px 16px rgba(245,200,66,0.3)}
+.send-btn{width:38px;height:38px;border-radius:11px;border:none;background:var(--grad-gold);color:#1a0f00;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s var(--spring);box-shadow:0 4px 16px rgba(245,200,66,0.3);-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .send-btn:hover{transform:scale(1.07) translateY(-1px);box-shadow:0 6px 20px rgba(245,200,66,0.4)}
 .send-btn:active{transform:scale(.93)}
 .send-btn:disabled{opacity:.35;cursor:not-allowed;transform:none;box-shadow:none}
@@ -203,30 +203,25 @@ body{font-family:var(--font-b);background:var(--void);color:var(--text-1);-webki
 .login-signout-btn{background:none;border:none;color:var(--text-3);font-size:10.5px;cursor:pointer;padding:2px 6px;border-radius:4px;font-family:var(--font-b);transition:color .15s}
 .login-signout-btn:hover{color:var(--rose)}
 
-/* ══ LOGIN PAGE — matches app design ══ */
+/* ══ LOGIN PAGE ══ */
 #page-login{align-items:center;justify-content:center;z-index:50;padding:20px}
 .login-wrap{width:100%;max-width:420px;display:flex;flex-direction:column;align-items:center;animation:fadeUp .6s var(--out) both}
-.login-logo-ring{width:90px;height:90px;border-radius:26px;background:var(--grad-hero);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;box-shadow:0 0 40px rgba(124,92,252,0.45),0 0 80px rgba(124,92,252,0.12);position:relative;overflow:hidden;flex-shrink:0}
+.login-logo-ring{width:86px;height:86px;border-radius:24px;background:var(--grad-hero);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 0 40px rgba(124,92,252,0.45);position:relative;overflow:hidden;flex-shrink:0}
 .login-logo-ring::before{content:'';position:absolute;inset:0;background:conic-gradient(from 0deg,var(--violet),var(--violet2),var(--gold),var(--violet));animation:spin 4s linear infinite;opacity:.5}
 .login-logo-ring svg{position:relative;z-index:1}
-.login-title{font-family:var(--font-d);font-size:clamp(38px,6vw,54px);font-weight:800;line-height:1.1;letter-spacing:-.02em;background:var(--grad-hero);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;margin-bottom:8px}
-.login-tagline{font-family:var(--font-d);font-size:14px;font-style:italic;color:var(--text-3);text-align:center;margin-bottom:24px}
-.login-card{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--r-xl);backdrop-filter:var(--blur-g);-webkit-backdrop-filter:var(--blur-g);padding:28px 26px 22px;width:100%;box-shadow:0 30px 70px rgba(0,0,0,0.5),inset 0 1px 0 var(--glass-shine)}
-.login-card-title{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;display:flex;align-items:center;gap:8px}
-.login-card-title::after{content:'';flex:1;height:1px;background:var(--glass-border)}
-.google-btn{width:100%;padding:14px 20px;border-radius:var(--r-lg);border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.055);color:var(--text-1);font-family:var(--font-b);font-size:14.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;transition:all .22s var(--smooth);position:relative;overflow:hidden;margin-bottom:16px}
-.google-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,92,252,0.1),rgba(245,200,66,0.05));opacity:0;transition:opacity .22s}
-.google-btn:hover{border-color:rgba(124,92,252,0.35);transform:translateY(-2px);box-shadow:0 12px 32px rgba(124,92,252,0.2)}
-.google-btn:hover::after{opacity:1}
+.login-title{font-family:var(--font-d);font-size:clamp(36px,6vw,52px);font-weight:800;background:var(--grad-hero);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;margin-bottom:6px}
+.login-tagline{font-size:13px;color:var(--text-3);text-align:center;margin-bottom:24px;font-style:italic}
+.login-card{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--r-xl);backdrop-filter:var(--blur-g);-webkit-backdrop-filter:var(--blur-g);padding:26px 24px 22px;width:100%;box-shadow:0 30px 70px rgba(0,0,0,0.5),inset 0 1px 0 var(--glass-shine)}
+.login-card-lbl{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.login-card-lbl::after{content:'';flex:1;height:1px;background:var(--glass-border)}
+.google-btn{width:100%;padding:13px 18px;border-radius:var(--r-lg);border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.055);color:var(--text-1);font-family:var(--font-b);font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:11px;transition:all .2s var(--smooth);margin-bottom:14px;position:relative;overflow:hidden}
+.google-btn:hover{border-color:rgba(124,92,252,0.4);transform:translateY(-1px);box-shadow:0 8px 24px rgba(124,92,252,0.18)}
 .google-btn:active{transform:scale(.97)}
-.google-btn svg{flex-shrink:0;position:relative;z-index:1}
-.google-btn-text{position:relative;z-index:1}
-.login-feats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
-.login-feat{display:flex;align-items:center;gap:9px;padding:10px 12px;border-radius:var(--r-md);background:var(--glass);border:1px solid var(--glass-border)}
-.login-feat-ico{font-size:16px;flex-shrink:0}
-.login-feat-txt{font-size:11px;font-weight:500;color:var(--text-2);line-height:1.3}
-.login-note{font-size:10.5px;color:var(--text-3);text-align:center;margin-top:14px;line-height:1.6}
-/* user pill shown in tutor topbar after login */
+.login-feats{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.login-feat{display:flex;align-items:center;gap:8px;padding:9px 11px;border-radius:var(--r-md);background:var(--glass);border:1px solid var(--glass-border)}
+.login-feat-ico{font-size:15px;flex-shrink:0}
+.login-feat-txt{font-size:10.5px;font-weight:500;color:var(--text-2);line-height:1.3}
+.login-note{font-size:10.5px;color:var(--text-3);text-align:center;margin-top:13px;line-height:1.5}
 .user-pill{display:none;align-items:center;gap:7px;padding:4px 10px 4px 5px;border-radius:100px;background:var(--glass);border:1px solid var(--glass-border);cursor:pointer;transition:all .18s var(--smooth)}
 .user-pill.show{display:flex}
 .user-pill:hover{background:rgba(255,60,90,0.08);border-color:rgba(255,60,90,0.2)}
@@ -234,39 +229,203 @@ body{font-family:var(--font-b);background:var(--void);color:var(--text-1);-webki
 .user-pill-name{font-size:11.5px;font-weight:500;color:var(--text-2);max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .user-pill-out{font-size:9px;color:var(--text-3)}
 
+/* ══ PYQ PAGE ══ */
+#page-pyq{align-items:center;justify-content:flex-start;overflow-y:auto;padding:28px 18px 100px;scrollbar-width:thin;scrollbar-color:rgba(124,92,252,0.2) transparent;z-index:1}
+#page-pyq::-webkit-scrollbar{width:4px}
+#page-pyq::-webkit-scrollbar-thumb{background:rgba(124,92,252,0.2);border-radius:4px}
+.pyq-wrap{width:100%;max-width:600px;animation:fadeUp .5s var(--out) both}
+.pyq-hero{text-align:center;margin-bottom:28px}
+.pyq-title{font-family:var(--font-d);font-size:clamp(26px,4vw,36px);font-weight:800;background:var(--grad-hero);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
+.pyq-sub{font-size:13px;color:var(--text-2);line-height:1.6}
+.pyq-card{background:var(--surface);border:1px solid var(--glass-border);border-radius:var(--r-xl);backdrop-filter:var(--blur-g);-webkit-backdrop-filter:var(--blur-g);margin-bottom:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.25);transition:box-shadow .2s}
+.pyq-card:hover{box-shadow:0 8px 32px rgba(124,92,252,0.12)}
+.pyq-card-head{display:flex;align-items:center;gap:11px;padding:14px 18px;cursor:pointer;user-select:none;transition:background .18s}
+.pyq-card-head:hover{background:rgba(124,92,252,0.06)}
+.pyq-card-emoji{font-size:20px;flex-shrink:0}
+.pyq-card-info{flex:1;min-width:0}
+.pyq-card-name{font-size:14px;font-weight:700;color:var(--text-1)}
+.pyq-card-desc{font-size:10.5px;color:var(--text-3);margin-top:1px}
+.pyq-chevron{flex-shrink:0;color:var(--text-3);transition:transform .28s var(--spring)}
+.pyq-card.open .pyq-chevron{transform:rotate(90deg);color:var(--violet2)}
+.pyq-body{display:none;padding:0 18px 14px;flex-direction:column;gap:7px}
+.pyq-card.open .pyq-body{display:flex}
+.pyq-link{display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--r-md);background:var(--glass);border:1px solid var(--glass-border);text-decoration:none;transition:all .18s var(--smooth)}
+.pyq-link:hover{background:rgba(245,200,66,0.08);border-color:rgba(245,200,66,0.28);transform:translateX(3px)}
+.pyq-badge{font-family:var(--font-m);font-size:11px;font-weight:600;color:var(--gold);background:rgba(245,200,66,0.1);border:1px solid rgba(245,200,66,0.22);padding:3px 8px;border-radius:6px;flex-shrink:0;min-width:48px;text-align:center}
+.pyq-link-name{font-size:12.5px;font-weight:500;color:var(--text-2);flex:1}
+.pyq-arrow{font-size:13px;color:var(--text-3);flex-shrink:0}
+.pyq-link:hover .pyq-arrow{color:var(--gold)}
+.pyq-source{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:6px;background:rgba(45,212,191,0.08);border:1px solid rgba(45,212,191,0.2);font-size:9.5px;font-weight:600;color:var(--teal);margin-bottom:8px;margin-left:2px}
+
+/* ══ BOTTOM NAV ══ */
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:20;display:none;background:rgba(7,4,18,0.97);backdrop-filter:var(--blur-g);-webkit-backdrop-filter:var(--blur-g);border-top:1px solid var(--glass-border);padding:6px 0 safe-area-inset-bottom}
+.bnav.show{display:flex}
+.bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:8px 4px 10px;background:none;border:none;cursor:pointer;transition:all .2s;color:var(--text-3);-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.bnav-btn.active{color:var(--violet2)}
+.bnav-btn svg{width:22px;height:22px}
+.bnav-lbl{font-size:10px;font-weight:600;font-family:var(--font-b);letter-spacing:.03em}
+/* Extra bottom padding so content doesn't hide behind nav */
+#page-setup{padding-bottom:100px !important}
+#page-pyq{padding-bottom:100px !important}
+#page-tutor .input-area{padding-bottom:calc(10px + 68px) !important}
+
 </style>
   <!-- Firebase Google Auth -->
     </head>
 <body>
 
-<!-- ══ PAGE 0 — LOGIN ══ -->
+<!-- ══ LOGIN ══ -->
 <div class="page" id="page-login">
   <div class="login-wrap">
     <div class="login-logo-ring">
-      <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5Z"/></svg>
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5Z"/></svg>
     </div>
     <div class="login-title">StudyMate</div>
     <div class="login-tagline">Maharashtra SSC · Standard 10 · AI Tutor</div>
     <div class="login-card">
-      <div class="login-card-title">Sign in to continue</div>
+      <div class="login-card-lbl">Sign in to continue</div>
       <button class="google-btn" id="googleSignInBtn">
-        <svg width="20" height="20" viewBox="0 0 48 48">
-          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-        </svg>
-        <span class="google-btn-text">Continue with Google</span>
+        <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+        Continue with Google
       </button>
       <div class="login-feats">
-        <div class="login-feat"><div class="login-feat-ico">📚</div><div class="login-feat-txt">9 subjects · Full Balbharati Q&amp;A</div></div>
+        <div class="login-feat"><div class="login-feat-ico">📚</div><div class="login-feat-txt">9 subjects · Balbharati Q&amp;A</div></div>
         <div class="login-feat"><div class="login-feat-ico">✦</div><div class="login-feat-txt">Board exam format answers</div></div>
         <div class="login-feat"><div class="login-feat-ico">🔢</div><div class="login-feat-txt">Step-by-step numericals</div></div>
-        <div class="login-feat"><div class="login-feat-ico">🎯</div><div class="login-feat-txt">Figures of speech &amp; definitions</div></div>
+        <div class="login-feat"><div class="login-feat-ico">📄</div><div class="login-feat-txt">10 years PYQ papers</div></div>
       </div>
     </div>
-    <p class="login-note" id="loginNote">Sign in with Google to save your sessions across devices</p>
+    <p class="login-note" id="loginNote">Sign in once · access from any device</p>
   </div>
+</div>
+
+<!-- ══ PYQ PAGE ══ -->
+<div class="page hidden" id="page-pyq">
+  <div class="pyq-wrap">
+    <div class="pyq-hero">
+      <div class="hero-badge" style="margin-bottom:12px"><span class="hero-badge-dot"></span>Free · Official Papers</div>
+      <div class="pyq-title">Previous Year Papers</div>
+      <p class="pyq-sub">Maharashtra Board SSC Std 10 · 2014–2026 · All subjects</p>
+    </div>
+
+    <!-- SCIENCE 1 -->
+    <div class="pyq-card" id="pq1">
+      <div class="pyq-card-head" onclick="pqToggle('pq1')">
+        <span class="pyq-card-emoji">⚗️</span>
+        <div class="pyq-card-info"><div class="pyq-card-name">Science &amp; Technology Part 1</div><div class="pyq-card-desc">Physics + Chemistry</div></div>
+        <svg class="pyq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="pyq-body">
+        <span class="pyq-source">✦ Shaalaa.com — all years with solutions</span>
+        <a class="pyq-link" href="https://www.shaalaa.com/search-question-papers/maharashtra-board-10th-standard-ssc-english-medium_662?subjects=science-and-tech-1_3355" target="_blank" rel="noopener"><span class="pyq-badge">All</span><span class="pyq-link-name">2014–2026 Papers + Solutions</span><span class="pyq-arrow">↗</span></a>
+      </div>
+    </div>
+
+    <!-- SCIENCE 2 -->
+    <div class="pyq-card" id="pq2">
+      <div class="pyq-card-head" onclick="pqToggle('pq2')">
+        <span class="pyq-card-emoji">🧬</span>
+        <div class="pyq-card-info"><div class="pyq-card-name">Science &amp; Technology Part 2</div><div class="pyq-card-desc">Biology + Environment</div></div>
+        <svg class="pyq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="pyq-body">
+        <span class="pyq-source">✦ Shaalaa.com — all years with solutions</span>
+        <a class="pyq-link" href="https://www.shaalaa.com/search-question-papers/maharashtra-board-10th-standard-ssc-english-medium_662?subjects=science-and-tech-2_3285" target="_blank" rel="noopener"><span class="pyq-badge">All</span><span class="pyq-link-name">2014–2026 Papers + Solutions</span><span class="pyq-arrow">↗</span></a>
+      </div>
+    </div>
+
+    <!-- MATHS -->
+    <div class="pyq-card" id="pq3">
+      <div class="pyq-card-head" onclick="pqToggle('pq3')">
+        <span class="pyq-card-emoji">📐</span>
+        <div class="pyq-card-info"><div class="pyq-card-name">Mathematics</div><div class="pyq-card-desc">Algebra (Part 1) + Geometry (Part 2)</div></div>
+        <svg class="pyq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="pyq-body">
+        <span class="pyq-source">✦ Shaalaa.com — all years with solutions</span>
+        <a class="pyq-link" href="https://www.shaalaa.com/search-question-papers/maharashtra-board-10th-standard-ssc-english-medium_662?subjects=algebra-mathematics-1_3277" target="_blank" rel="noopener"><span class="pyq-badge">Alg</span><span class="pyq-link-name">Algebra 2014–2026 + Solutions</span><span class="pyq-arrow">↗</span></a>
+        <a class="pyq-link" href="https://www.shaalaa.com/search-question-papers/maharashtra-board-10th-standard-ssc-english-medium_662?subjects=geometry-mathematics-2_3278" target="_blank" rel="noopener"><span class="pyq-badge">Geo</span><span class="pyq-link-name">Geometry 2014–2026 + Solutions</span><span class="pyq-arrow">↗</span></a>
+      </div>
+    </div>
+
+    <!-- ENGLISH -->
+    <div class="pyq-card" id="pq4">
+      <div class="pyq-card-head" onclick="pqToggle('pq4')">
+        <span class="pyq-card-emoji">📖</span>
+        <div class="pyq-card-info"><div class="pyq-card-name">English</div><div class="pyq-card-desc">Kumarbharati</div></div>
+        <svg class="pyq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="pyq-body">
+        <span class="pyq-source">✦ Shaalaa.com — all years with solutions</span>
+        <a class="pyq-link" href="https://www.shaalaa.com/search-question-papers/maharashtra-board-10th-standard-ssc-english-medium_662?subjects=english_3216" target="_blank" rel="noopener"><span class="pyq-badge">All</span><span class="pyq-link-name">2014–2026 Papers + Solutions</span><span class="pyq-arrow">↗</span></a>
+      </div>
+    </div>
+
+    <!-- HISTORY & CIVICS -->
+    <div class="pyq-card" id="pq5">
+      <div class="pyq-card-head" onclick="pqToggle('pq5')">
+        <span class="pyq-card-emoji">🏛️</span>
+        <div class="pyq-card-info"><div class="pyq-card-name">History &amp; Political Science</div><div class="pyq-card-desc">Social Science</div></div>
+        <svg class="pyq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="pyq-body">
+        <span class="pyq-source">✦ Shaalaa.com — all years with solutions</span>
+        <a class="pyq-link" href="https://www.shaalaa.com/search-question-papers/maharashtra-board-10th-standard-ssc-english-medium_662?subjects=history-and-political-science-social-science-1_3287" target="_blank" rel="noopener"><span class="pyq-badge">All</span><span class="pyq-link-name">2014–2026 Papers + Solutions</span><span class="pyq-arrow">↗</span></a>
+      </div>
+    </div>
+
+    <!-- GEOGRAPHY -->
+    <div class="pyq-card" id="pq6">
+      <div class="pyq-card-head" onclick="pqToggle('pq6')">
+        <span class="pyq-card-emoji">🌏</span>
+        <div class="pyq-card-info"><div class="pyq-card-name">Geography</div><div class="pyq-card-desc">Social Science</div></div>
+        <svg class="pyq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="pyq-body">
+        <span class="pyq-source">✦ Shaalaa.com — all years with solutions</span>
+        <a class="pyq-link" href="https://www.shaalaa.com/search-question-papers/maharashtra-board-10th-standard-ssc-english-medium_662?subjects=geography-social-science-2_3289" target="_blank" rel="noopener"><span class="pyq-badge">All</span><span class="pyq-link-name">2014–2026 Papers + Solutions</span><span class="pyq-arrow">↗</span></a>
+      </div>
+    </div>
+
+    <!-- HINDI -->
+    <div class="pyq-card" id="pq7">
+      <div class="pyq-card-head" onclick="pqToggle('pq7')">
+        <span class="pyq-card-emoji">🖊️</span>
+        <div class="pyq-card-info"><div class="pyq-card-name">Hindi</div><div class="pyq-card-desc">लोकभारती</div></div>
+        <svg class="pyq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="pyq-body">
+        <span class="pyq-source">✦ Shaalaa.com — all years with solutions</span>
+        <a class="pyq-link" href="https://www.shaalaa.com/search-question-papers/maharashtra-board-10th-standard-ssc-english-medium_662?subjects=hindi-second-third-language_3200" rel="noopener"><span class="pyq-badge">All</span><span class="pyq-link-name">2014–2026 Papers + Solutions</span><span class="pyq-arrow">↗</span></a>
+      </div>
+    </div>
+
+    <!-- MARATHI -->
+    <div class="pyq-card" id="pq8">
+      <div class="pyq-card-head" onclick="pqToggle('pq8')">
+        <span class="pyq-card-emoji">📚</span>
+        <div class="pyq-card-info"><div class="pyq-card-name">Marathi</div><div class="pyq-card-desc">अक्षरभारती</div></div>
+        <svg class="pyq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="pyq-body">
+        <span class="pyq-source">✦ Shaalaa.com — all years with solutions</span>
+        <a class="pyq-link" href="https://www.shaalaa.com/search-question-papers/maharashtra-board-10th-standard-ssc-english-medium_662?subjects=marathi-second-language-mraathi-dvitiy-bhaasaa_3234" target="_blank" rel="noopener"><span class="pyq-badge">All</span><span class="pyq-link-name">2014–2026 Papers + Solutions</span><span class="pyq-arrow">↗</span></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ BOTTOM NAV ══ -->
+<div class="bnav" id="bnav">
+  <button class="bnav-btn active" id="bn-study" onclick="navSwitch('study')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5Z"/></svg>
+    <span class="bnav-lbl">AI Tutor</span>
+  </button>
+  <button class="bnav-btn" id="bn-pyq" onclick="navSwitch('pyq')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+    <span class="bnav-lbl">PYQ Papers</span>
+  </button>
 </div>
 
 <div class="bg-wrap">
@@ -310,7 +469,7 @@ body{font-family:var(--font-b);background:var(--void);color:var(--text-1);-webki
       <div class="tutor-chapter" id="tutorChapters">—</div>
     </div>
     <div class="tutor-badge"><span class="tutor-badge-dot"></span>AI Tutor</div>
-    <div class="user-pill" id="userPill"><img id="uAvatar" src="" alt=""/><span class="user-pill-name" id="uName"></span><span class="user-pill-out">&#8618;</span></div>
+    <div class="user-pill" id="userPill"><img id="uAv" src="" alt=""/><span class="user-pill-name" id="uNm"></span><span class="user-pill-out">&#8618;</span></div>
   </div>
   <div class="context-strip" id="contextStrip"></div>
   <div class="messages-wrap">
@@ -338,72 +497,6 @@ body{font-family:var(--font-b);background:var(--void);color:var(--text-1);-webki
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script>
 'use strict';
-
-/* ══ FIREBASE CONFIG ═══════════════════════════════════
-   Get YOUR values from: console.firebase.google.com
-   Project Settings → Your apps → Web → Copy config
-   Then: Authentication → Sign-in method → Enable Google
-═══════════════════════════════════════════════════════ */
-const FIREBASE_CONFIG = {
-  apiKey: 'AIzaSyB0Wq4PD5dHfGvXvzWtus0KrlUHlRS-IxA',
-  authDomain: 'aura-ai-fe8dc.firebaseapp.com',
-  projectId: 'aura-ai-fe8dc',
-  storageBucket: 'aura-ai-fe8dc.firebasestorage.app',
-  messagingSenderId: '351800248641',
-  appId: '1:351800248641:web:a099c8e31d7b4f01dcf9c0'
-};
-let _auth = null;
-try { firebase.initializeApp(FIREBASE_CONFIG); _auth = firebase.auth(); }
-catch(e) { console.warn('[StudyMate] Firebase not configured:', e.message); }
-
-function _goLogin(){
-  document.getElementById('page-login').classList.remove('hidden');
-  document.getElementById('page-setup').classList.add('hidden');
-  document.getElementById('page-tutor').classList.add('hidden');
-  document.getElementById('userPill').classList.remove('show');
-}
-function _goApp(user){
-  document.getElementById('page-login').classList.add('hidden');
-  if(user){
-    document.getElementById('uAvatar').src = user.photoURL||'';
-    document.getElementById('uName').textContent = (user.displayName||user.email||'Student').split(' ')[0];
-    document.getElementById('userPill').classList.add('show');
-  }
-  const saved = loadSession();
-  if(saved){ state.subject=saved.subject; state.subSubject=saved.subSubject; state.selectedChapters=saved.selectedChapters; openTutorPage(); toast('Welcome back! ✦','success'); }
-  else { document.getElementById('page-setup').classList.remove('hidden'); }
-}
-
-if(_auth){
-  _auth.onAuthStateChanged(u=>{ if(u) _goApp(u); else _goLogin(); });
-} else {
-  // Not configured — show skip button
-  setTimeout(function(){
-    var note = document.getElementById('loginNote');
-    if(!note) return;
-    var btn = document.createElement('button');
-    btn.textContent = 'Skip (Firebase not set up yet)';
-    btn.style.cssText = 'display:block;margin:8px auto 0;background:none;border:1px solid rgba(255,255,255,0.12);color:var(--text-3);padding:5px 14px;border-radius:8px;cursor:pointer;font-size:11px;font-family:var(--font-b)';
-    btn.addEventListener('click', function(){ document.getElementById('page-login').classList.add('hidden'); document.getElementById('page-setup').classList.remove('hidden'); });
-    note.parentNode.insertBefore(btn, note.nextSibling);
-  }, 200);
-}
-
-document.addEventListener('DOMContentLoaded', function(){
-  document.getElementById('googleSignInBtn').addEventListener('click', function(){
-    if(!_auth){ toast('Fill in Firebase config in the code to enable Google login', 'error', 5000); return; }
-    _auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
-      .catch(function(err){ toast('Sign-in failed: ' + err.message, 'error', 6000); });
-  });
-  document.getElementById('userPill').addEventListener('click', function(){
-    var bd = document.createElement('div'); bd.className='dialog-bd';
-    bd.innerHTML = '<div class="dialog-box"><h3>Sign Out?</h3><p>You will return to the login screen.</p><div class="dialog-btns"><button class="btn btn-ghost" id="_n">Cancel</button><button class="btn btn-primary" id="_y">Sign Out</button></div></div>';
-    document.body.appendChild(bd);
-    bd.querySelector('#_n').addEventListener('click', function(){bd.remove();});
-    bd.querySelector('#_y').addEventListener('click', function(){bd.remove(); clearSession(); if(_auth) _auth.signOut(); else _goLogin();});
-    bd.addEventListener('click', function(e){ if(e.target===bd) bd.remove(); });
-  });
-});
 
 /* ── GROQ API ── */
 const GROQ_KEYS = [
@@ -475,7 +568,7 @@ const CURRICULUM = {
     subSubjects: {
       'Algebra (Part 1)': [
         {n:1,t:'Arithmetic Progression'},{n:2,t:'Quadratic Equations'},
-        {n:3,t:'Linear Equations in Two Variables'},{n:4,t:'Probability'},{n:5,t:'Statistics'},
+        {n:3,t:'Linear Equations in Two Variables'},{n:4,t:'Financial Planning'},{n:5,t:'Probability'},{n:6,t:'Statistics'},
       ],
       'Geometry (Part 2)': [
         {n:1,t:'Similarity'},{n:2,t:'Circle'},{n:3,t:'Coordinate Geometry'},
@@ -1684,49 +1777,53 @@ hindi_5: `गोदान (अंश) — मुंशी प्रेमचं�
    buildSystemPrompt — uses KB for selected chapters
 ══════════════════════════════════════════════════════ */
 function buildSystemPrompt() {
-  var subj = CURRICULUM[state.subject];
-  var subPart = state.subSubject ? ' (' + state.subSubject + ')' : '';
-  var subjKey = state.subject;
+  const subj = CURRICULUM[state.subject];
+  const subPart = state.subSubject ? ' (' + state.subSubject + ')' : '';
+  const subKey = state.subject;
+  const chList = state.selectedChapters.map(function(c){ return '  - Chapter ' + c.n + ': ' + c.t; }).join('\n');
 
-  function getKB(key, subKey, n) {
-    var s = KB[key];
-    if (!s) return '';
-    if (key === 'maths' && subKey) return (s[subKey] && s[subKey][n]) ? s[subKey][n] : '';
-    return s[n] || '';
+  function getKBContent(key, subSubject, chNum) {
+    if (key === 'maths') {
+      var sub = (subSubject === 'Algebra (Part 1)') ? 'alg' : 'geo';
+      return KB['maths_' + sub + '_' + chNum] || '';
+    }
+    return KB[key + '_' + chNum] || '';
   }
 
-  var chList = state.selectedChapters.map(function(c){ return '  Ch.' + c.n + ': ' + c.t; }).join('\n');
-  var kbContent = state.selectedChapters.map(function(ch) {
-    var content = getKB(subjKey, state.subSubject, ch.n);
-    return '\n=== Ch.' + ch.n + ': ' + ch.t + ' ===\n' + (content || 'Use your Maharashtra Board Balbharati Std 10 textbook knowledge for this chapter.');
+  var chapterContent = state.selectedChapters.map(function(ch) {
+    var content = getKBContent(subKey, state.subSubject, ch.n);
+    if (content) {
+      return '\n===== Chapter ' + ch.n + ': ' + ch.t + ' =====\n' + content;
+    }
+    return '\n===== Chapter ' + ch.n + ': ' + ch.t + ' =====\n[Use your full Maharashtra Board Balbharati textbook knowledge for this chapter]';
   }).join('\n');
 
-  return 'You are StudyMate, an expert Maharashtra State Board (SSC) Standard 10 AI tutor.\n\n' +
+  return 'You are StudyMate, a complete Maharashtra State Board (SSC) Standard 10 expert AI tutor with thorough knowledge of all Balbharati textbooks.\n\n' +
     'SUBJECT: ' + subj.label + subPart + '\n' +
-    'BOARD: Maharashtra SSC Balbharati Standard 10\n\n' +
-    'SELECTED CHAPTERS:\n' + chList + '\n\n' +
-    '=== TEXTBOOK CONTENT — READ THIS BEFORE ANSWERING ===\n' +
-    kbContent + '\n\n' +
-    '=== HOW TO ANSWER ===\n' +
-    'CRITICAL: Your answers MUST come directly from the textbook content above. Never give generic answers.\n' +
-    'When a student asks any question, FIRST find the answer in the textbook content above, THEN reply.\n' +
-    'If the student asks for textbook questions or Q&A, copy EXACTLY from the Q&A sections above.\n' +
-    'If the student asks to explain a chapter, use the content above point by point.\n\n' +
-    'MARKS FORMAT:\n' +
-    '1 mark: One sentence with exact textbook definition.\n' +
-    '2 marks: Definition + example, or 2 key points from textbook.\n' +
-    '3 marks: 3 detailed points with explanation from textbook.\n' +
-    '5 marks: Heading + definition + detailed explanation + examples/equations + conclusion.\n\n' +
-    'SUBJECT RULES:\n' +
-    'Science: definition then balanced equation then numericals as GIVEN/FIND/FORMULA/SOLUTION/ANSWER with units.\n' +
-    'Maths: write FORMULA first, then substitute values, show every step, answer with units.\n' +
-    'English: figures of speech = NAME + EXACT LINE FROM POEM + EXPLANATION. Give stanza meanings line by line.\n' +
-    'History/Civics: exact dates, names, causes, effects.\n' +
-    'Geography: heights, coordinates, comparisons.\n\n' +
-    'End EVERY answer with: Exam Tip: [specific tip for Maharashtra Board exam]\n' +
-    'Use **bold** for key terms. Use bullet points and numbered lists.\n' +
-    'Only answer about selected chapters. Be warm and encouraging.';
+    'BOARD: Maharashtra State Board SSC Standard 10 Balbharati\n' +
+    'STUDENT SELECTED CHAPTERS:\n' + chList + '\n\n' +
+    'COMPLETE BALBHARATI TEXTBOOK KNOWLEDGE FOR YOUR CHAPTERS:\n' +
+    chapterContent + '\n\n' +
+    '=== ANSWER RULES ===\n' +
+    '1. ANSWER FORMAT (match marks exactly):\n' +
+    '   1 mark: One precise sentence with key term or definition.\n' +
+    '   2 marks: Definition + example OR two key points (4-5 lines).\n' +
+    '   3 marks: Intro + 3 detailed points + conclusion (8-10 lines).\n' +
+    '   5 marks: Heading + definition + detailed explanation + examples/equations + conclusion (15-20 lines).\n\n' +
+    '2. SUBJECT RULES:\n' +
+    '   English: themes, central idea, figures of speech (NAME + QUOTE + EXPLAIN), character sketches, stanza-by-stanza, quotes with analysis, author details.\n' +
+    '   Maths: Write FORMULA first, substitute values, show EVERY step, box final answer with units.\n' +
+    '   Science: Definition first, balanced chemical equations, numericals as Given/Find/Formula/Solution/Answer with units.\n' +
+    '   History/Civics: Exact dates, full names, causes, effects, significance. Point-by-point answers.\n' +
+    '   Geography: Heights, coordinates, place names, compare/contrast in tables.\n' +
+    '   Marathi: lekhakaache naav, vishay, mukhya mudde, alankaar, pariksheesaathi tips.\n' +
+    '   Hindi: lekhak/kavi parichay, paath ka saaransh, bhaavaarth, kaavya visheshataen.\n\n' +
+    '3. Use the KNOWLEDGE BASE above to give complete textbook-accurate answers with exact Q&A and model answers as expected in Maharashtra SSC Board exams.\n' +
+    '4. Add a short Exam Tip: at the end of every answer.\n' +
+    '5. Only answer about the chapters listed above.\n' +
+    '6. Use markdown: bold key terms, bullet points, numbered steps. Be warm and encouraging.';
 }
+
 
 function openTutorPage(){
   const subj=CURRICULUM[state.subject];
@@ -1845,7 +1942,119 @@ micBtn.addEventListener('click',()=>{
 });
 function micOff(){micActive=false;micBtn.style.color='';}
 
-/* Session restore is handled by _goApp() after Google auth */
+
+/* ══ FIREBASE ═══════════════════════════════════
+   Fill in from: console.firebase.google.com
+   Project Settings → Web App → Config
+   Auth → Sign-in method → Enable Google
+═══════════════════════════════════════════════ */
+const FIREBASE_CONFIG = {
+  apiKey:            'AIzaSyB0Wq4PD5dHfGvXvzWtus0KrlUHlRS-IxA',
+  authDomain:        'aura-ai-fe8dc.firebaseapp.com',
+  projectId:         'aura-ai-fe8dc',
+  storageBucket:     'aura-ai-fe8dc.firebasestorage.app',
+  messagingSenderId: '351800248641',
+  appId:             '1:351800248641:web:a099c8e31d7b4f01dcf9c0'
+};
+let _auth = null;
+try { firebase.initializeApp(FIREBASE_CONFIG); _auth = firebase.auth(); }
+catch(e) { console.warn('[StudyMate] Firebase:', e.message); }
+
+function _goLogin() {
+  document.getElementById('page-login').classList.remove('hidden');
+  document.getElementById('page-setup').classList.add('hidden');
+  document.getElementById('page-tutor').classList.add('hidden');
+  document.getElementById('page-pyq').classList.add('hidden');
+  document.getElementById('userPill').classList.remove('show');
+  document.getElementById('bnav').classList.remove('show');
+}
+function _goApp(user) {
+  document.getElementById('page-login').classList.add('hidden');
+  document.getElementById('bnav').classList.add('show');
+  if (user) {
+    document.getElementById('uAv').src = user.photoURL || '';
+    document.getElementById('uNm').textContent = (user.displayName || user.email || 'Student').split(' ')[0];
+    document.getElementById('userPill').classList.add('show');
+  }
+  const saved = loadSession();
+  if (saved) {
+    state.subject = saved.subject; state.subSubject = saved.subSubject; state.selectedChapters = saved.selectedChapters;
+    openTutorPage();
+    toast('Welcome back! ✦', 'success');
+  } else {
+    document.getElementById('page-setup').classList.remove('hidden');
+  }
+}
+
+if (_auth) {
+  _auth.onAuthStateChanged(function(u) { if (u) _goApp(u); else _goLogin(); });
+} else {
+  setTimeout(function() {
+    var note = document.getElementById('loginNote');
+    if (!note) return;
+    var btn = document.createElement('button');
+    btn.textContent = 'Skip (configure Firebase to enable login)';
+    btn.style.cssText = 'display:block;margin:10px auto 0;background:none;border:1px solid rgba(255,255,255,0.12);color:var(--text-3);padding:6px 14px;border-radius:8px;cursor:pointer;font-size:11px;font-family:var(--font-b)';
+    btn.onclick = function() {
+      document.getElementById('page-login').classList.add('hidden');
+      document.getElementById('page-setup').classList.remove('hidden');
+      document.getElementById('bnav').classList.add('show');
+    };
+    note.parentNode.insertBefore(btn, note.nextSibling);
+  }, 200);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('googleSignInBtn').addEventListener('click', function() {
+    if (!_auth) { toast('Firebase not configured yet', 'error', 4000); return; }
+    _auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .catch(function(err) { toast('Sign-in failed: ' + err.message, 'error', 6000); });
+  });
+  document.getElementById('userPill').addEventListener('click', function() {
+    var bd = document.createElement('div'); bd.className = 'dialog-bd';
+    bd.innerHTML = '<div class="dialog-box"><h3>Sign Out?</h3><p>You will return to the login screen.</p><div class="dialog-btns"><button class="btn btn-ghost" id="_n">Cancel</button><button class="btn btn-primary" id="_y">Sign Out</button></div></div>';
+    document.body.appendChild(bd);
+    bd.querySelector('#_n').onclick = function() { bd.remove(); };
+    bd.querySelector('#_y').onclick = function() { bd.remove(); clearSession(); if (_auth) _auth.signOut(); else _goLogin(); };
+    bd.onclick = function(e) { if (e.target === bd) bd.remove(); };
+  });
+});
+
+/* ── PYQ ACCORDION ── */
+function pqToggle(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var isOpen = el.classList.contains('open');
+  document.querySelectorAll('.pyq-card.open').forEach(function(c) { c.classList.remove('open'); });
+  if (!isOpen) el.classList.add('open');
+}
+
+/* ── BOTTOM NAV ── */
+function navSwitch(tab) {
+  document.querySelectorAll('.bnav-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.getElementById('bn-' + tab).classList.add('active');
+  if (tab === 'pyq') {
+    document.getElementById('page-setup').classList.add('hidden');
+    document.getElementById('page-tutor').classList.add('hidden');
+    document.getElementById('page-pyq').classList.remove('hidden');
+  } else {
+    // Go back to study - show whatever page is appropriate
+    document.getElementById('page-pyq').classList.add('hidden');
+    var saved = loadSession();
+    if (state.subject && state.selectedChapters && state.selectedChapters.length) {
+      // Already in a session - just show tutor page
+      document.getElementById('page-setup').classList.add('hidden');
+      document.getElementById('page-tutor').classList.remove('hidden');
+    } else if (saved) {
+      state.subject = saved.subject; state.subSubject = saved.subSubject; state.selectedChapters = saved.selectedChapters;
+      openTutorPage();
+    } else {
+      document.getElementById('page-setup').classList.remove('hidden');
+    }
+  }
+}
+
+/* session restore handled by _goApp() */
 </script>
 </body>
 </html>
